@@ -84,7 +84,9 @@ AssignmentOperator : one of
 
 ## Status
 
-Implemented as option in Traceur
+Implemented as option in Traceur 
+
+https://github.com/google/traceur-compiler/pull/1216
 
 
 ## Reviewed By: 
