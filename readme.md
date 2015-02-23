@@ -1,6 +1,6 @@
 # Exponentiation Operator
 
-## Stage 0
+## Stage 2
 
 Performs exponential calculation on operands. Same algorithm as `%MathPow%(x, y)`
 
