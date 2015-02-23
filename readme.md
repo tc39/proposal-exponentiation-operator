@@ -1,8 +1,8 @@
 # Exponentiation Operator
 
-## Stage 2
+**Stage 2**
 
-### Normative
+## Normative
 
 Performs right-associative exponential calculation on operands. Same algorithm as `%MathPow%(x, y)`
 
@@ -38,7 +38,7 @@ AssignmentOperator : one of
 
 
 
-### Informative
+## Informative
 
 - Commonly used in albegra, geometry, physics and robotics.
 - Nice to have "inline" operator
