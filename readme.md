@@ -53,19 +53,20 @@ b **= 3;
 
 ```
 
+## Grammar
+
 ```
-
 ExponentiationExpression : 
-  UnaryExpression
-  UnaryExpression ** ExponentiationExpression
+  UnaryExpression[?Yield]
+  UnaryExpression[?Yield] ** ExponentiationExpression[?Yield]
+
+MultiplicativeExpression[Yield] :
+  ExponentiationExpression[?Yield]
+  MultiplicativeExpression[?Yield] MultiplicativeOperator UnaryExpression[?Yield]
+
+MultiplicativeOperator : one of
+  * / %
   
-MultiplicativeExpression :
-  ExponentiationExpression
-  MultiplicativeExpression * ExponentiationExpression
-  MultiplicativeExpression / ExponentiationExpression
-  MultiplicativeExpression % ExponentiationExpression
-
-
 AssignmentOperator : one of
   =
   *=
@@ -80,6 +81,37 @@ AssignmentOperator : one of
   ^=
   |=
   **=
+```
+
+## Grammar Delta
+
+```diff
++ ExponentiationExpression : 
++   UnaryExpression[?Yield]
++   UnaryExpression[?Yield] ** ExponentiationExpression[?Yield]
+
+MultiplicativeExpression[Yield] :
+-   UnaryExpression[?Yield]
++   ExponentiationExpression[?Yield]
+  MultiplicativeExpression[?Yield] MultiplicativeOperator UnaryExpression[?Yield]
+
+MultiplicativeOperator : one of
+  * / %
+
+AssignmentOperator : one of
+  =
+  *=
+  /=
+  %=
+  +=
+  -=
+  <<=
+  >>=
+  >>>=
+  &=
+  ^=
+  |=
++   **=
 ```
 
 ## Status
