@@ -15,7 +15,7 @@ ExponentiationExpression :
 
 MultiplicativeExpression[Yield] :
   ExponentiationExpression[?Yield]
-  MultiplicativeExpression[?Yield] MultiplicativeOperator UnaryExpression[?Yield]
+  MultiplicativeExpression[?Yield] MultiplicativeOperator ExponentiationExpression[?Yield]
 
 MultiplicativeOperator : one of
   * / %
