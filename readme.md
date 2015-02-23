@@ -2,58 +2,11 @@
 
 ## Stage 2
 
-Performs exponential calculation on operands. Same algorithm as `%MathPow%(x, y)`
+### Normative
 
-- Commonly used in albegra, geometry, physics and robotics.
-- Nice to have "inline" operator
+Performs right-associative exponential calculation on operands. Same algorithm as `%MathPow%(x, y)`
 
-## Prior Art
-
-- Python
-  - `math.pow(x, y)`
-  - `x ** y`
-- CoffeeScript
-  - `x ** y`
-- F#
-  - `x ** y`
-- Ruby
-  - `x ** y`
-- Perl
-  - `x ** y`
-- Lua, Basic, MATLAB, etc.
-  - `x ^ y`
-
-
-## Usage
-
-
-```js
-// x ** y
-
-let squared = 2 ** 2;
-// same as: 2 * 2
-
-let cubed = 2 ** 3;
-// same as: 2 * 2 * 2
-
-```
-
-```js
-// x **= y
-
-let a = 2;
-a **= 2;
-// same as: a = a * a;
-
-
-
-let b = 3;
-b **= 3;
-// same as: b = b * b * b;
-
-```
-
-## Grammar
+#### Grammar
 
 ```
 ExponentiationExpression : 
@@ -83,7 +36,61 @@ AssignmentOperator : one of
   **=
 ```
 
-## Grammar Delta
+
+
+### Informative
+
+- Commonly used in albegra, geometry, physics and robotics.
+- Nice to have "inline" operator
+
+#### Prior Art
+
+- Python
+  - `math.pow(x, y)`
+  - `x ** y`
+- CoffeeScript
+  - `x ** y`
+- F#
+  - `x ** y`
+- Ruby
+  - `x ** y`
+- Perl
+  - `x ** y`
+- Lua, Basic, MATLAB, etc.
+  - `x ^ y`
+
+
+#### Usage
+
+
+```js
+// x ** y
+
+let squared = 2 ** 2;
+// same as: 2 * 2
+
+let cubed = 2 ** 3;
+// same as: 2 * 2 * 2
+
+```
+
+```js
+// x **= y
+
+let a = 2;
+a **= 2;
+// same as: a = a * a;
+
+
+
+let b = 3;
+b **= 3;
+// same as: b = b * b * b;
+
+```
+
+
+#### Grammar Delta
 
 ```diff
 + ExponentiationExpression : 
@@ -116,13 +123,18 @@ AssignmentOperator : one of
 
 ## Status
 
-Implemented as option in Traceur 
+Implementation Progress
+  - Traceur
+  - Babel
+  - V8 (https://code.google.com/p/v8/issues/detail?id=3915)
+  - SpiderMonkey (https://bugzilla.mozilla.org/show_bug.cgi?id=1135708)
 
-https://github.com/google/traceur-compiler/pull/1216
+
 
 
 ## Reviewed By: 
 
 - Erik Arvidsson
 - Dmitry Lomov
-
+- Cait Potter
+- Jason Orendorff
