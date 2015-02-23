@@ -100,7 +100,9 @@ b **= 3;
 MultiplicativeExpression[Yield] :
 -   UnaryExpression[?Yield]
 +   ExponentiationExpression[?Yield]
-  MultiplicativeExpression[?Yield] MultiplicativeOperator UnaryExpression[?Yield]
+-   MultiplicativeExpression[?Yield] MultiplicativeOperator UnaryExpression[?Yield]
++   MultiplicativeExpression[?Yield] MultiplicativeOperator ExponentiationExpression[?Yield]
+
 
 MultiplicativeOperator : one of
   * / %
