@@ -40,8 +40,8 @@ AssignmentOperator : one of
 
 ## Informative
 
-- Commonly used in albegra, geometry, physics and robotics.
-- Nice to have "inline" operator
+- Commonly used in mathematics, physics and robotics.
+- [Infix notation](http://en.wikipedia.org/wiki/Infix_notation) is more succinct than function notation, which makes it more preferable
 
 #### Prior Art
 
