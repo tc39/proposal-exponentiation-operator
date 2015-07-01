@@ -2,11 +2,14 @@
 
 **Stage 2**
 
-## Normative
+## Applying the `**` Operator
 
-Performs right-associative exponential calculation on operands. Same algorithm as `%MathPow%(x, y)`
+The `**` _ExponentiationOperator_ performs exponentiation, producing the result of raising the right operand, or _base_, to the power of the left operand, or _exponent_.
 
-#### Grammar
+1. Return %Math.pow%(_base_, _exponent_);
+
+
+## Grammar
 
 ```
 ExponentiationExpression : 
