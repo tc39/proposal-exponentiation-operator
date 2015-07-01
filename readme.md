@@ -2,14 +2,14 @@
 
 **Stage 2**
 
-## Applying the `**` Operator
+#### Applying the `**` Operator
 
 The `**` _ExponentiationOperator_ performs exponentiation, producing the result of raising the right operand, or _base_, to the power of the left operand, or _exponent_.
 
 1. Return %Math.pow%(_base_, _exponent_);
 
 
-## Grammar
+#### Grammar
 
 ```
 ExponentiationExpression : 
