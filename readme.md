@@ -12,7 +12,7 @@
 - Adds %Math.pow% to Well-Known Intrinsics Table
 
 
-#### 12.6 _Exponentiation Operator_
+#### 12.6 Exponentiation Operator
 
   **Syntax**
   
