@@ -3,6 +3,7 @@
 ## Status
 
 - Currently at **Stage 2**, with implementation agreement from SpiderMonkey and V8.
+- Implemented in Traceur 
 
 
 ## Notes
