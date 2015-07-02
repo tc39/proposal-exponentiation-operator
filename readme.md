@@ -2,8 +2,20 @@
 
 ## Status
 
-- Currently at **Stage 2**, with implementation agreement from SpiderMonkey and V8.
-- Implemented in Traceur 
+**Stage 2**
+
+Implementation Progress
+  - Traceur
+  - Babel
+  - V8 (https://code.google.com/p/v8/issues/detail?id=3915)
+  - SpiderMonkey (https://bugzilla.mozilla.org/show_bug.cgi?id=1135708)
+
+## Reviewers
+
+- Erik Arvidsson
+- Dmitry Lomov
+- Cait Potter
+- Jason Orendorff
 
 
 ## Notes
@@ -169,20 +181,4 @@ AssignmentOperator : one of
 +   **=
 ```
 
-## Status
 
-Implementation Progress
-  - Traceur
-  - Babel
-  - V8 (https://code.google.com/p/v8/issues/detail?id=3915)
-  - SpiderMonkey (https://bugzilla.mozilla.org/show_bug.cgi?id=1135708)
-
-
-
-
-## Reviewers
-
-- Erik Arvidsson
-- Dmitry Lomov
-- Cait Potter
-- Jason Orendorff
