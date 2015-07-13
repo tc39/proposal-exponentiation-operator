@@ -1,0 +1,67 @@
+<!doctype html>
+<meta charset="utf8">
+<link rel="stylesheet" href="https://bterlson.github.io/ecmarkup/elements.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<style>
+  emu-production.inline emu-mods {
+    display: none;
+  }
+</style>
+
+<title>Exponentiation Operator</title>
+<h1>Exponentiation Operator</h1>
+
+
+
+<emu-clause id="exponentiation-operator">
+  <h1>Exponentiation Operator</h1>
+
+  <link rel="import" href="./syntax.html">
+
+
+
+  <emu-clause id="sec-exponentiation-operator-static-semantics-isfunctiondefinition">
+    <h1>Static Semantics: IsFunctionDefintion</h1>
+    <p>
+      <emu-prodref name="ExponentiationExpression" a="2" class="inline"></emu-prodref><br>
+    </p>
+    <emu-alg>
+      1. Return *false*.
+    </emu-alg>
+  </emu-clause>
+
+  <emu-clause id="sec-exponentiation-operator-static-semantics-isvalidsimpleassignmenttarget">
+    <h1>Static Semantics: IsValidSimpleAssignmentTarget</h1>
+    <p>
+      <emu-prodref name="ExponentiationExpression" a="2" class="inline"></emu-prodref><br>
+    </p>
+    <emu-alg>
+      1. Return *false*.
+    </emu-alg>
+  </emu-clause>
+
+  <emu-clause id="sec-exponentiation-operator-runtime-semantics-evaluation">
+    <h1>Runtime Semantics: Evaluation</h1>
+    <p>
+      <emu-prodref name="ExponentiationExpression" a="2" class="inline"></emu-prodref><br>
+    </p>
+    <emu-alg>
+      1. Let _left_ be the result of evaluating _UnaryExpression_.
+      1. Let _lValue_ be GetValue(_left_).
+      1. ReturnIfAbrupt(_lValue_).
+      1. Let _right_ be the result of evaluating _ExponentiationExpression_.
+      1. Let _rValue_ be GetValue(_right_).
+      1. Let _base_ be ToNumber(_lValue_).
+      1. ReturnIfAbrupt(_base_).
+      1. Let _exponent_ be ToNumber(_rValue_).
+      1. ReturnIfAbrupt(_exponent_).
+      1. Return %Math_pow%(_base_, _exponent_).
+    </emu-alg>
+
+    (Move _Multiplicative Operators_ to 12.7)
+
+  </emu-clause>
+</emu-clause>
+
+<link rel="import" href="./modifications.html">
+<link rel="import" href="./annex.html">

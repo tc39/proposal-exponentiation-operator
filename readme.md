@@ -69,3 +69,11 @@ b **= 3;
 // same as: b = b * b * b;
 
 ```
+
+
+
+#### Render Spec
+
+```
+ecmarkup spec/index.html index.html
+```

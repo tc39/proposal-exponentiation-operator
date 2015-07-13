@@ -1,0 +1,25 @@
+<emu-clause id="modified-productions">
+  <h1>Modifications to existing productions</h1>
+
+
+  <emu-clause id="MultiplicativeExpression">
+    <h1>|MultiplicativeExpression|</h1>
+    <emu-production name="MultiplicativeExpression">
+      <del class="block"><emu-rhs><emu-nt>UnaryExpression[?Yield]</emu-nt></emu-rhs></del>
+      <ins class="block"><emu-rhs><emu-nt>ExponentiationExpression[?Yield]</emu-nt></emu-rhs></ins>
+      <del class="block"><emu-rhs><emu-nt>MultiplicativeExpression[?Yield] MultiplicativeOperator UnaryExpression[?Yield]</emu-nt></emu-rhs></del>
+      <ins class="block"><emu-rhs><emu-nt>MultiplicativeExpression[?Yield] MultiplicativeOperator ExponentiationExpression[?Yield]</emu-nt></emu-rhs></ins>
+
+    </emu-production>
+  </emu-clause>
+
+  <emu-clause id="AssignmentOperator">
+    <h1>|AssignmentOperator|</h1>
+    <emu-production name="AssignmentOperator">
+      <del class="block"><emu-rhs><emu-t>= *= /= %= += -= <<= >>= >>>= &= ^= |=</emu-t></emu-rhs></del>
+      <ins class="block"><emu-rhs><emu-t>= *= /= %= += -= <<= >>= >>>= &= ^= |= **=</emu-t></emu-rhs></ins>
+    </emu-production>
+  </emu-clause>
+
+
+</emu-clause>

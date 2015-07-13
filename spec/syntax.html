@@ -1,0 +1,18 @@
+<h2>Syntax</h2>
+<emu-grammar>
+  ExponentiationExpression :
+    UnaryExpression[?Yield]     #1
+    UnaryExpression[?Yield] `**` ExponentiationExpression[?Yield]       #2
+
+  MultiplicativeExpression[Yield] :
+    ExponentiationExpression[?Yield]      #1
+    MultiplicativeExpression[?Yield] MultiplicativeOperator ExponentiationExpression[?Yield]    #2
+
+  MultiplicativeOperator : one of
+    `* / %`     #1
+
+  AssignmentOperator : one of
+    `= *= /= %= += -= <<= >>= >>>= &= ^= |= **=`    #1
+
+
+</emu-grammar>
