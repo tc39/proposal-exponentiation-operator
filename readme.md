@@ -1,5 +1,7 @@
 # Exponentiation Operator
 
+[Specification](http://rwaldron.github.io/exponentiation-operator/)
+
 ## Status
 
 **Stage 2**
