@@ -85,7 +85,7 @@
     <h1><span class="secnum">1.4</span>Applying the ** operator</h1>
 
     <p>
-      The <code>**</code> <var>ExponentiationOperator</var> performs exponentiation on <var>base</var> with <var>exponent</var>.
+      Returns an implementation-dependent approximation to the result of raising <var>base</var> to the power <var>exponent</var>.
     </p>
 
     <emu-alg><ol>
@@ -142,8 +142,8 @@
 
   <emu-clause id="Punctuators">
     <h1><span class="secnum">2.3</span><emu-nt>Punctuator</emu-nt></h1>
-    <emu-production name="Punctuators" lexical="" oneof="">
-      <emu-nt>Punctuators</emu-nt><emu-geq>:</emu-geq><emu-oneof>one of</emu-oneof><del class="block"><emu-rhs><emu-t>{ ( ) [ ] . ... ; , &lt; &gt; &lt;= &gt;=  ==  !=  === !==  + - * % ++  -- &lt;&lt;  &gt;&gt;  &gt;&gt;&gt; &amp; | ^ ! ~ &amp;&amp;  ||  ? : = +=  -=  *=  %=  &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;=  &amp;=  |=  ^=  =&gt;
+    <emu-production name="Punctuator" type="lexical" oneof="">
+      <emu-nt>Punctuator</emu-nt><emu-geq>::</emu-geq><emu-oneof>one of</emu-oneof><del class="block"><emu-rhs><emu-t>{ ( ) [ ] . ... ; , &lt; &gt; &lt;= &gt;=  ==  !=  === !==  + - * % ++  -- &lt;&lt;  &gt;&gt;  &gt;&gt;&gt; &amp; | ^ ! ~ &amp;&amp;  ||  ? : = +=  -=  *=  %=  &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;=  &amp;=  |=  ^=  =&gt;
 </emu-t></emu-rhs></del>
       <ins class="block"><emu-rhs><emu-t>{ ( ) [ ] . ... ; , &lt; &gt; &lt;= &gt;=  ==  !=  === !== + - * ** % ++  -- &lt;&lt;  &gt;&gt;  &gt;&gt;&gt; &amp; | ^ ! ~ &amp;&amp;  ||  ? : = +=  -=  *= **= %=  &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;=  &amp;=  |=  ^=  =&gt;
 </emu-t></emu-rhs></ins>
