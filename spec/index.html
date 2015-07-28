@@ -21,7 +21,7 @@
 
 
   <emu-clause id="sec-exponentiation-operator-static-semantics-isfunctiondefinition">
-    <h1>Static Semantics: IsFunctionDefintion</h1>
+    <h1>Static Semantics: IsFunctionDefinition</h1>
     <p>
       <emu-prodref name="ExponentiationExpression" a="2" class="inline"></emu-prodref><br>
     </p>
@@ -55,9 +55,43 @@
       1. ReturnIfAbrupt(_base_).
       1. Let _exponent_ be ToNumber(_rValue_).
       1. ReturnIfAbrupt(_exponent_).
-      1. Return %Math_pow%(_base_, _exponent_).
+      1. Return the result of applying the _ExpontentiationOperator_ **` to _base_ and _exponent_ as specified in 1.4.
     </emu-alg>
 
+  </emu-clause>
+
+  <emu-clause id="sec-applying-the-exp-operator">
+    <h1>Applying the ** operator</h1>
+
+    <p>
+      Returns an implementation-dependent approximation to the result of raising _base_ to the power _exponent_.
+    </p>
+
+    <emu-alg>
+      1. If _exponent_ is *NaN*, the result is *NaN*.
+      1. If _exponent_ is +0, the result is 1, even if _base_ is *NaN*.
+      1. If _exponent_ is −0, the result is 1, even if _base_ is *NaN*.
+      1. If _base_ is *NaN and _exponent_ is nonzero, the result is *NaN*.
+      1. If abs(_base_) > 1 and _exponent_ is +∞, the result is +∞.
+      1. If abs(_base_) > 1 and _exponent_ is −∞, the result is +0.
+      1. If abs(_base_) is 1 and _exponent_ is +∞, the result is *NaN*.
+      1. If abs(_base_) is 1 and _exponent_ is −∞, the result is *NaN*.
+      1. If abs(_base_) < 1 and _exponent_ is +∞, the result is +0.
+      1. If abs(_base_) < 1 and _exponent_ is −∞, the result is +∞.
+      1. If _base_ is +∞ and y > 0, the result is +∞.
+      1. If _base_ is +∞ and y < 0, the result is +0.
+      1. If _base_ is −∞ and y > 0 and _exponent_ is an odd integer, the result is −∞.
+      1. If _base_ is −∞ and y > 0 and _exponent_ is not an odd integer, the result is +∞.
+      1. If _base_ is −∞ and y < 0 and _exponent_ is an odd integer, the result is −0.
+      1. If _base_ is −∞ and y < 0 and _exponent_ is not an odd integer, the result is +0.
+      1. If _base_ is +0 and y > 0, the result is +0.
+      1. If _base_ is +0 and y < 0, the result is +∞.
+      1. If _base_ is −0 and y > 0 and _exponent_ is an odd integer, the result is −0.
+      1. If _base_ is −0 and y > 0 and _exponent_ is not an odd integer, the result is +0.
+      1. If _base_ is −0 and y < 0 and _exponent_ is an odd integer, the result is −∞.
+      1. If _base_ is −0 and y < 0 and _exponent_ is not an odd integer, the result is +∞.
+      1. If _base_ < 0 and _base_ is finite and _exponent_ is finite and _exponent_ is not an integer, the result is *NaN*.
+    </emu-alg>
   </emu-clause>
 </emu-clause>
 
