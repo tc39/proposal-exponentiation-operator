@@ -13,7 +13,7 @@
 
 
 
-<div><h2>Table of Contents</h2><ol class="toc"><li><a href="#exponentiation-operator"><span class="secnum">1</span> Exponentiation Operator</a><ol class="toc"><li><a href="#sec-exponentiation-operator-static-semantics-isfunctiondefinition"><span class="secnum">1.1</span> Static Semantics: IsFunctionDefintion</a></li><li><a href="#sec-exponentiation-operator-static-semantics-isvalidsimpleassignmenttarget"><span class="secnum">1.2</span> Static Semantics: IsValidSimpleAssignmentTarget</a></li><li><a href="#sec-exponentiation-operator-runtime-semantics-evaluation"><span class="secnum">1.3</span> Runtime Semantics: Evaluation</a></li></ol></li><li><a href="#modified-productions"><span class="secnum">2</span> Modifications to existing productions</a><ol class="toc"><li><a href="#MultiplicativeExpression"><span class="secnum">2.1</span> <emu-nt>MultiplicativeExpression</emu-nt></a></li><li><a href="#AssignmentOperator"><span class="secnum">2.2</span> <emu-nt>AssignmentOperator</emu-nt> : one of</a></li></ol></li><li><a href="#integration"><span class="secnum">A</span> Integration</a></li></ol></div><emu-clause id="exponentiation-operator">
+<div><h2>Table of Contents</h2><ol class="toc"><li><a href="#exponentiation-operator"><span class="secnum">1</span> Exponentiation Operator</a><ol class="toc"><li><a href="#sec-exponentiation-operator-static-semantics-isfunctiondefinition"><span class="secnum">1.1</span> Static Semantics: IsFunctionDefintion</a></li><li><a href="#sec-exponentiation-operator-static-semantics-isvalidsimpleassignmenttarget"><span class="secnum">1.2</span> Static Semantics: IsValidSimpleAssignmentTarget</a></li><li><a href="#sec-exponentiation-operator-runtime-semantics-evaluation"><span class="secnum">1.3</span> Runtime Semantics: Evaluation</a></li></ol></li><li><a href="#modified-productions"><span class="secnum">2</span> Modifications to existing productions</a><ol class="toc"><li><a href="#MultiplicativeExpression"><span class="secnum">2.1</span> <emu-nt>MultiplicativeExpression</emu-nt></a></li><li><a href="#AssignmentOperator"><span class="secnum">2.2</span> <emu-nt>AssignmentOperator</emu-nt></a></li><li><a href="#Punctuators"><span class="secnum">2.3</span> <emu-nt>Punctuator</emu-nt></a></li></ol></li><li><a href="#integration"><span class="secnum">A</span> Integration</a></li></ol></div><emu-clause id="exponentiation-operator">
   <h1><span class="secnum">1</span>Exponentiation Operator</h1>
 
   <h2>Syntax</h2>
@@ -95,7 +95,7 @@
   </emu-clause>
 
   <emu-clause id="AssignmentOperator">
-    <h1><span class="secnum">2.2</span><emu-nt>AssignmentOperator</emu-nt> : one of</h1>
+    <h1><span class="secnum">2.2</span><emu-nt>AssignmentOperator</emu-nt></h1>
     <emu-production name="AssignmentOperator">
       <emu-nt>AssignmentOperator</emu-nt><emu-geq>:</emu-geq><del class="block"><emu-rhs><emu-t>= *= /= %= += -= &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |=</emu-t></emu-rhs></del>
       <ins class="block"><emu-rhs><emu-t>= *= /= %= += -= &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |= **=</emu-t></emu-rhs></ins>
@@ -103,8 +103,18 @@
   </emu-clause>
 
 
-</emu-clause>
+  <emu-clause id="Punctuators">
+    <h1><span class="secnum">2.3</span><emu-nt>Punctuator</emu-nt></h1>
+    <emu-production name="Punctuators" lexical="" oneof="">
+      <emu-nt>Punctuators</emu-nt><emu-geq>:</emu-geq><emu-oneof>one of</emu-oneof><del class="block"><emu-rhs><emu-t>{ ( ) [ ] . ... ; , &lt; &gt; &lt;= &gt;=  ==  !=  === !==  + - * % ++  -- &lt;&lt;  &gt;&gt;  &gt;&gt;&gt; &amp; | ^ ! ~ &amp;&amp;  ||  ? : = +=  -=  *=  %=  &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;=  &amp;=  |=  ^=  =&gt;
+</emu-t></emu-rhs></del>
+      <ins class="block"><emu-rhs><emu-t>{ ( ) [ ] . ... ; , &lt; &gt; &lt;= &gt;=  ==  !=  === !== + - * ** % ++  -- &lt;&lt;  &gt;&gt;  &gt;&gt;&gt; &amp; | ^ ! ~ &amp;&amp;  ||  ? : = +=  -=  *= **= %=  &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;=  &amp;=  |=  ^=  =&gt;
+</emu-t></emu-rhs></ins>
 
+    </emu-production>
+
+</emu-clause>
+</emu-clause>
 <emu-annex id="integration">
   <h1><span class="secnum">A</span>Integration</h1>
 
