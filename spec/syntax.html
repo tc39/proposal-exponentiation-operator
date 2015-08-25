@@ -1,13 +1,25 @@
 <h2>Syntax</h2>
 <emu-grammar>
-  ExponentiationExpression :
-    UnaryExpression[?Yield]     #1
-    UnaryExpression[?Yield] `**` ExponentiationExpression[?Yield]       #2
+  IncrementExpression[Yield] :
+    LeftHandSideExpression[?Yield]    #1
+    LeftHandSideExpression[?Yield] [no LineTerminator here] ++    #2
+    LeftHandSideExpression[?Yield] [no LineTerminator here] --    #3
+    ++ LeftHandSideExpression[?Yield]    #4
+    -- LeftHandSideExpression[?Yield]    #5
 
-  MultiplicativeExpression[Yield] :
-    ExponentiationExpression[?Yield]      #1
-    MultiplicativeExpression[?Yield] MultiplicativeOperator ExponentiationExpression[?Yield]    #2
-
+  UnaryExpression[Yield] :
+    IncrementExpression[?Yield]
+    delete UnaryExpression[?Yield]
+    void UnaryExpression[?Yield]
+    typeof UnaryExpression[?Yield]
+    ++ UnaryExpression[?Yield]
+    + UnaryExpression[?Yield]
+    -- UnaryExpression[?Yield]
+    - UnaryExpression[?Yield]
+    ~ UnaryExpression[?Yield]
+    ! UnaryExpression[?Yield]
+    IncrementExpression[?Yield] ** UnaryExpression[?Yield]    #11
+    
   MultiplicativeOperator : one of
     `* / %`     #1
 
