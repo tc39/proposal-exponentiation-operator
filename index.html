@@ -9,157 +9,53 @@
 </style>
 
 <title>Exponentiation Operator</title>
-</head><body><h1>Exponentiation Operator</h1>
+</head><body><div id="menu-toggle">☰</div><div id="menu"><div id="menu-toc"><ol class="toc"><li><span class="item-toggle">◢</span><a href="#exp-operator" title="Exponentiation Operator"><span class="secnum">1</span> Exponentiation Operator</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-exp-operator-static-semantics-isfunctiondefinition" title="Static Semantics: IsFunctionDefinition"><span class="secnum">1.1</span> SS: IsFunctionDefinition</a></li><li><span class="item-toggle-none"></span><a href="#sec-exp-operator-static-semantics-isvalidsimpleassignmenttarget" title="Static Semantics: IsValidSimpleAssignmentTarget"><span class="secnum">1.2</span> SS: IsValidSimpleAssignmentTarget</a></li><li><span class="item-toggle-none"></span><a href="#sec-exp-operator-runtime-semantics-evaluation" title="Runtime Semantics: Evaluation"><span class="secnum">1.3</span> RS: Evaluation</a></li><li><span class="item-toggle-none"></span><a href="#sec-applying-the-exp-operator" title="Applying the ** operator"><span class="secnum">1.4</span> Applying the <emu-val></emu-val> operator</a></li></ol></li></ol></div></div><h1>Exponentiation Operator</h1>
 
 
 
-<div><h2>Table of Contents</h2><ol class="toc"><li><a href="#exponentiation-operator"><span class="secnum">1</span> Exponentiation Operator</a><ol class="toc"><li><a href="#sec-exponentiation-operator-static-semantics-isfunctiondefinition"><span class="secnum">1.1</span> Static Semantics: IsFunctionDefinition</a></li><li><a href="#sec-exponentiation-operator-static-semantics-isvalidsimpleassignmenttarget"><span class="secnum">1.2</span> Static Semantics: IsValidSimpleAssignmentTarget</a></li><li><a href="#sec-exponentiation-operator-runtime-semantics-evaluation"><span class="secnum">1.3</span> Runtime Semantics: Evaluation</a></li><li><a href="#sec-applying-the-exp-operator"><span class="secnum">1.4</span> Applying the ** operator</a></li></ol></li><li><a href="#modified-productions"><span class="secnum">2</span> Modifications to existing productions</a><ol class="toc"><li><a href="#MultiplicativeExpression"><span class="secnum">2.1</span> <emu-nt>MultiplicativeExpression</emu-nt></a></li><li><a href="#AssignmentOperator"><span class="secnum">2.2</span> <emu-nt>AssignmentOperator</emu-nt></a></li><li><a href="#Punctuators"><span class="secnum">2.3</span> <emu-nt>Punctuator</emu-nt></a></li></ol></li><li><a href="#integration"><span class="secnum">A</span> Integration</a></li></ol></div><emu-clause id="exponentiation-operator">
-  <h1><span class="secnum">1</span>Exponentiation Operator</h1>
+<emu-clause id="exp-operator">
+  <h1><span class="secnum">1</span>Exponentiation Operator<span class="utils"><span class="anchor"><a href="#exp-operator">#</a></span></span></h1>
 
-  <h2>Syntax</h2>
-<emu-grammar><emu-production name="ExponentiationExpression">
-    <emu-nt>ExponentiationExpression</emu-nt><emu-geq>:</emu-geq><emu-rhs a="1"><emu-nt params="?Yield">UnaryExpression<emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
-    <emu-rhs a="2"><emu-nt params="?Yield">UnaryExpression<emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-t>**</emu-t><emu-nt params="?Yield">ExponentiationExpression<emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
-</emu-production>
-<emu-production name="MultiplicativeExpression" params="Yield">
-    <emu-nt params="Yield">MultiplicativeExpression<emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="1"><emu-nt params="?Yield">ExponentiationExpression<emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
-    <emu-rhs a="2"><emu-nt params="?Yield">MultiplicativeExpression<emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-nt>MultiplicativeOperator</emu-nt><emu-nt params="?Yield">ExponentiationExpression<emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
-</emu-production>
-<emu-production name="MultiplicativeOperator" oneof="">
-    <emu-nt>MultiplicativeOperator</emu-nt><emu-geq>:</emu-geq><emu-oneof>one of</emu-oneof><emu-rhs><emu-t>*</emu-t><emu-t>/</emu-t><emu-t>%</emu-t></emu-rhs>
-</emu-production>
-<emu-production name="AssignmentOperator" oneof="">
-    <emu-nt>AssignmentOperator</emu-nt><emu-geq>:</emu-geq><emu-oneof>one of</emu-oneof><emu-rhs><emu-t>=</emu-t><emu-t>*=</emu-t><emu-t>/=</emu-t><emu-t>%=</emu-t><emu-t>+=</emu-t><emu-t>-=</emu-t><emu-t>&lt;&lt;=</emu-t><emu-t>&gt;&gt;=</emu-t><emu-t>&gt;&gt;&gt;=</emu-t><emu-t>&amp;=</emu-t><emu-t>^=</emu-t><emu-t>|=</emu-t><emu-t>**=</emu-t></emu-rhs>
-</emu-production>
-<emu-production name="Punctuator" type="lexical" oneof="">
-    <emu-nt>Punctuator</emu-nt><emu-geq>::</emu-geq><emu-oneof>one of</emu-oneof><emu-rhs><emu-t>{</emu-t><emu-t>(</emu-t><emu-t>)</emu-t><emu-t>[</emu-t><emu-t>]</emu-t><emu-t>.</emu-t><emu-t>...</emu-t><emu-t>;</emu-t><emu-t>,</emu-t><emu-t>&lt;</emu-t><emu-t>&gt;</emu-t><emu-t>&lt;=</emu-t><emu-t>&gt;=</emu-t><emu-t>==</emu-t><emu-t>!=</emu-t><emu-t>===</emu-t><emu-t>!==</emu-t><emu-t>+</emu-t><emu-t>-</emu-t><emu-t>*</emu-t><emu-t>**</emu-t><emu-t>%</emu-t><emu-t>++</emu-t><emu-t>--</emu-t><emu-t>&lt;&lt;</emu-t><emu-t>&gt;&gt;</emu-t><emu-t>&gt;&gt;&gt;</emu-t><emu-t>&amp;</emu-t><emu-t>|</emu-t><emu-t>^</emu-t><emu-t>!</emu-t><emu-t>~</emu-t><emu-t>&amp;&amp;</emu-t><emu-t>||</emu-t><emu-t>?</emu-t><emu-t>:</emu-t><emu-t>=</emu-t><emu-t>+=</emu-t><emu-t>-=</emu-t><emu-t>*=</emu-t><emu-t>**=</emu-t><emu-t>%=</emu-t><emu-t>&lt;&lt;=</emu-t><emu-t>&gt;&gt;=</emu-t><emu-t>&gt;&gt;&gt;=</emu-t><emu-t>&amp;=</emu-t><emu-t>|=</emu-t><emu-t>^=</emu-t><emu-t>=&gt;</emu-t></emu-rhs>
-</emu-production></emu-grammar>
+  <link rel="import" href="./syntax.html">
 
 
 
-
-  <emu-clause id="sec-exponentiation-operator-static-semantics-isfunctiondefinition">
-    <h1><span class="secnum">1.1</span>Static Semantics: IsFunctionDefinition</h1>
+  <emu-clause id="sec-exp-operator-static-semantics-isfunctiondefinition">
+    <h1><span class="secnum">1.1</span>Static Semantics: IsFunctionDefinition<span class="utils"><span class="anchor"><a href="#sec-exp-operator-static-semantics-isfunctiondefinition">#</a></span></span></h1>
     <p>
-      <emu-production name="ExponentiationExpression" a="2" class="inline">
-    <emu-nt>ExponentiationExpression</emu-nt><emu-geq>:</emu-geq><emu-rhs a="2"><emu-nt params="?Yield">UnaryExpression<emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-t>**</emu-t><emu-nt params="?Yield">ExponentiationExpression<emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></emu-production><br>
+      <emu-prodref name="WTF" a="2" class="inline"></emu-prodref><br>
     </p>
-    <emu-alg><ol>
-  <li>Return <emu-val>false</emu-val>.</li>
-</ol></emu-alg>
+    <emu-alg><ol><li>Return <emu-val>false</emu-val>.</li></ol></emu-alg>
   </emu-clause>
 
-  <emu-clause id="sec-exponentiation-operator-static-semantics-isvalidsimpleassignmenttarget">
-    <h1><span class="secnum">1.2</span>Static Semantics: IsValidSimpleAssignmentTarget</h1>
+  <emu-clause id="sec-exp-operator-static-semantics-isvalidsimpleassignmenttarget">
+    <h1><span class="secnum">1.2</span>Static Semantics: IsValidSimpleAssignmentTarget<span class="utils"><span class="anchor"><a href="#sec-exp-operator-static-semantics-isvalidsimpleassignmenttarget">#</a></span></span></h1>
     <p>
-      <emu-production name="ExponentiationExpression" a="2" class="inline">
-    <emu-nt>ExponentiationExpression</emu-nt><emu-geq>:</emu-geq><emu-rhs a="2"><emu-nt params="?Yield">UnaryExpression<emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-t>**</emu-t><emu-nt params="?Yield">ExponentiationExpression<emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></emu-production><br>
+      <emu-prodref name="WTF" a="2" class="inline"></emu-prodref><br>
     </p>
-    <emu-alg><ol>
-  <li>Return <emu-val>false</emu-val>.</li>
-</ol></emu-alg>
+    <emu-alg><ol><li>Return <emu-val>false</emu-val>.</li></ol></emu-alg>
   </emu-clause>
 
-  <emu-clause id="sec-exponentiation-operator-runtime-semantics-evaluation">
-    <h1><span class="secnum">1.3</span>Runtime Semantics: Evaluation</h1>
+  <emu-clause id="sec-exp-operator-runtime-semantics-evaluation">
+    <h1><span class="secnum">1.3</span>Runtime Semantics: Evaluation<span class="utils"><span class="anchor"><a href="#sec-exp-operator-runtime-semantics-evaluation">#</a></span></span></h1>
     <p>
-      <emu-production name="ExponentiationExpression" a="2" class="inline">
-    <emu-nt>ExponentiationExpression</emu-nt><emu-geq>:</emu-geq><emu-rhs a="2"><emu-nt params="?Yield">UnaryExpression<emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-t>**</emu-t><emu-nt params="?Yield">ExponentiationExpression<emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></emu-production><br>
+      <emu-prodref name="WTF" a="2" class="inline"></emu-prodref><br>
     </p>
-    <emu-alg><ol>
-  <li>Let <var>left</var> be the result of evaluating <var>UnaryExpression</var>.</li>
-  <li>Let <var>lValue</var> be <a href="https://people.mozilla.org/~jorendorff/es6-draft.html#sec-getvalue">GetValue</a>(<var>left</var>).</li>
-  <li><a href="https://people.mozilla.org/~jorendorff/es6-draft.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>lValue</var>).</li>
-  <li>Let <var>right</var> be the result of evaluating <var>ExponentiationExpression</var>.</li>
-  <li>Let <var>rValue</var> be <a href="https://people.mozilla.org/~jorendorff/es6-draft.html#sec-getvalue">GetValue</a>(<var>right</var>).</li>
-  <li>Let <var>base</var> be <a href="https://people.mozilla.org/~jorendorff/es6-draft.html#sec-tonumber">ToNumber</a>(<var>lValue</var>).</li>
-  <li><a href="https://people.mozilla.org/~jorendorff/es6-draft.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>base</var>).</li>
-  <li>Let <var>exponent</var> be <a href="https://people.mozilla.org/~jorendorff/es6-draft.html#sec-tonumber">ToNumber</a>(<var>rValue</var>).</li>
-  <li><a href="https://people.mozilla.org/~jorendorff/es6-draft.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>exponent</var>).</li>
-  <li>Return the result of applying the <var>ExpontentiationOperator</var> <code>**</code> to <var>base</var> and <var>exponent</var> as specified in 1.4.</li>
-</ol></emu-alg>
+    <emu-alg><ol><li>Let <var>left</var> be the result of evaluating <var>WTF</var>.</li><li>Let <var>lValue</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-getvalue">GetValue</a>(<var>left</var>).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>lValue</var>).</li><li>Let <var>right</var> be the result of evaluating <var>ExponentiationExpression</var>.</li><li>Let <var>rValue</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-getvalue">GetValue</a>(<var>right</var>).</li><li>Let <var>base</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tonumber">ToNumber</a>(<var>lValue</var>).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>base</var>).</li><li>Let <var>exponent</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tonumber">ToNumber</a>(<var>rValue</var>).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>exponent</var>).</li><li>Return the result of applying the <var>ExpontentiationOperator</var> <code>**</code> to <var>base</var> and <var>exponent</var> as specified in 1.4.</li></ol></emu-alg>
 
   </emu-clause>
 
   <emu-clause id="sec-applying-the-exp-operator">
-    <h1><span class="secnum">1.4</span>Applying the ** operator</h1>
+    <h1><span class="secnum">1.4</span>Applying the <emu-val></emu-val> operator<span class="utils"><span class="anchor"><a href="#sec-applying-the-exp-operator">#</a></span></span></h1>
 
     <p>
       Returns an implementation-dependent approximation of the result of raising <var>base</var> to the power <var>exponent</var>.
     </p>
 
-    <emu-alg><ol>
-  <li>If <var>exponent</var> is <emu-val>NaN</emu-val>, the result is <emu-val>NaN</emu-val>.</li>
-  <li>If <var>exponent</var> is +0, the result is 1, even if <var>base</var> is <emu-val>NaN</emu-val>.</li>
-  <li>If <var>exponent</var> is −0, the result is 1, even if <var>base</var> is <emu-val>NaN</emu-val>.</li>
-  <li>If <var>base</var> is <emu-val>NaN</emu-val> and <var>exponent</var> is nonzero, the result is <emu-val>NaN</emu-val>.</li>
-  <li>If abs(<var>base</var>) &gt; 1 and <var>exponent</var> is +∞, the result is +∞.</li>
-  <li>If abs(<var>base</var>) &gt; 1 and <var>exponent</var> is −∞, the result is +0.</li>
-  <li>If abs(<var>base</var>) is 1 and <var>exponent</var> is +∞, the result is <emu-val>NaN</emu-val>.</li>
-  <li>If abs(<var>base</var>) is 1 and <var>exponent</var> is −∞, the result is <emu-val>NaN</emu-val>.</li>
-  <li>If abs(<var>base</var>) &lt; 1 and <var>exponent</var> is +∞, the result is +0.</li>
-  <li>If abs(<var>base</var>) &lt; 1 and <var>exponent</var> is −∞, the result is +∞.</li>
-  <li>If <var>base</var> is +∞ and y &gt; 0, the result is +∞.</li>
-  <li>If <var>base</var> is +∞ and y &lt; 0, the result is +0.</li>
-  <li>If <var>base</var> is −∞ and y &gt; 0 and <var>exponent</var> is an odd integer, the result is −∞.</li>
-  <li>If <var>base</var> is −∞ and y &gt; 0 and <var>exponent</var> is not an odd integer, the result is +∞.</li>
-  <li>If <var>base</var> is −∞ and y &lt; 0 and <var>exponent</var> is an odd integer, the result is −0.</li>
-  <li>If <var>base</var> is −∞ and y &lt; 0 and <var>exponent</var> is not an odd integer, the result is +0.</li>
-  <li>If <var>base</var> is +0 and y &gt; 0, the result is +0.</li>
-  <li>If <var>base</var> is +0 and y &lt; 0, the result is +∞.</li>
-  <li>If <var>base</var> is −0 and y &gt; 0 and <var>exponent</var> is an odd integer, the result is −0.</li>
-  <li>If <var>base</var> is −0 and y &gt; 0 and <var>exponent</var> is not an odd integer, the result is +0.</li>
-  <li>If <var>base</var> is −0 and y &lt; 0 and <var>exponent</var> is an odd integer, the result is −∞.</li>
-  <li>If <var>base</var> is −0 and y &lt; 0 and <var>exponent</var> is not an odd integer, the result is +∞.</li>
-  <li>If <var>base</var> &lt; 0 and <var>base</var> is finite and <var>exponent</var> is finite and <var>exponent</var> is not an integer, the result is <emu-val>NaN</emu-val>.</li>
-</ol></emu-alg>
+    <emu-alg><ol><li>If <var>exponent</var> is <emu-val>NaN</emu-val>, the result is <emu-val>NaN</emu-val>.</li><li>If <var>exponent</var> is +0, the result is 1, even if <var>base</var> is <emu-val>NaN</emu-val>.</li><li>If <var>exponent</var> is −0, the result is 1, even if <var>base</var> is <emu-val>NaN</emu-val>.</li><li>If <var>base</var> is <emu-val>NaN</emu-val> and <var>exponent</var> is nonzero, the result is <emu-val>NaN</emu-val>.</li><li>If abs(<var>base</var>) &gt; 1 and <var>exponent</var> is +∞, the result is +∞.</li><li>If abs(<var>base</var>) &gt; 1 and <var>exponent</var> is −∞, the result is +0.</li><li>If abs(<var>base</var>) is 1 and <var>exponent</var> is +∞, the result is <emu-val>NaN</emu-val>.</li><li>If abs(<var>base</var>) is 1 and <var>exponent</var> is −∞, the result is <emu-val>NaN</emu-val>.</li><li>If abs(<var>base</var>) &lt; 1 and <var>exponent</var> is +∞, the result is +0.</li><li>If abs(<var>base</var>) &lt; 1 and <var>exponent</var> is −∞, the result is +∞.</li><li>If <var>base</var> is +∞ and y &gt; 0, the result is +∞.</li><li>If <var>base</var> is +∞ and y &lt; 0, the result is +0.</li><li>If <var>base</var> is −∞ and y &gt; 0 and <var>exponent</var> is an odd integer, the result is −∞.</li><li>If <var>base</var> is −∞ and y &gt; 0 and <var>exponent</var> is not an odd integer, the result is +∞.</li><li>If <var>base</var> is −∞ and y &lt; 0 and <var>exponent</var> is an odd integer, the result is −0.</li><li>If <var>base</var> is −∞ and y &lt; 0 and <var>exponent</var> is not an odd integer, the result is +0.</li><li>If <var>base</var> is +0 and y &gt; 0, the result is +0.</li><li>If <var>base</var> is +0 and y &lt; 0, the result is +∞.</li><li>If <var>base</var> is −0 and y &gt; 0 and <var>exponent</var> is an odd integer, the result is −0.</li><li>If <var>base</var> is −0 and y &gt; 0 and <var>exponent</var> is not an odd integer, the result is +0.</li><li>If <var>base</var> is −0 and y &lt; 0 and <var>exponent</var> is an odd integer, the result is −∞.</li><li>If <var>base</var> is −0 and y &lt; 0 and <var>exponent</var> is not an odd integer, the result is +∞.</li><li>If <var>base</var> &lt; 0 and <var>base</var> is finite and <var>exponent</var> is finite and <var>exponent</var> is not an integer, the result is <emu-val>NaN</emu-val>.</li></ol></emu-alg>
   </emu-clause>
 </emu-clause>
 
-<emu-clause id="modified-productions">
-  <h1><span class="secnum">2</span>Modifications to existing productions</h1>
-
-
-  <emu-clause id="MultiplicativeExpression">
-    <h1><span class="secnum">2.1</span><emu-nt>MultiplicativeExpression</emu-nt></h1>
-    <emu-production name="MultiplicativeExpression">
-      <emu-nt>MultiplicativeExpression</emu-nt><emu-geq>:</emu-geq><del class="block"><emu-rhs><emu-nt>UnaryExpression[?Yield]</emu-nt></emu-rhs></del>
-      <ins class="block"><emu-rhs><emu-nt>ExponentiationExpression[?Yield]</emu-nt></emu-rhs></ins>
-      <del class="block"><emu-rhs><emu-nt>MultiplicativeExpression[?Yield] MultiplicativeOperator UnaryExpression[?Yield]</emu-nt></emu-rhs></del>
-      <ins class="block"><emu-rhs><emu-nt>MultiplicativeExpression[?Yield] MultiplicativeOperator ExponentiationExpression[?Yield]</emu-nt></emu-rhs></ins>
-
-    </emu-production>
-  </emu-clause>
-
-  <emu-clause id="AssignmentOperator">
-    <h1><span class="secnum">2.2</span><emu-nt>AssignmentOperator</emu-nt></h1>
-    <emu-production name="AssignmentOperator" oneof="">
-      <emu-nt>AssignmentOperator</emu-nt><emu-geq>:</emu-geq><emu-oneof>one of</emu-oneof><del class="block"><emu-rhs><emu-t>= *= /= %= += -= &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |=</emu-t></emu-rhs></del>
-      <ins class="block"><emu-rhs><emu-t>= *= /= %= += -= &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |= **=</emu-t></emu-rhs></ins>
-    </emu-production>
-  </emu-clause>
-
-
-  <emu-clause id="Punctuators">
-    <h1><span class="secnum">2.3</span><emu-nt>Punctuator</emu-nt></h1>
-    <emu-production name="Punctuator" type="lexical" oneof="">
-      <emu-nt>Punctuator</emu-nt><emu-geq>::</emu-geq><emu-oneof>one of</emu-oneof><del class="block"><emu-rhs><emu-t>{ ( ) [ ] . ... ; , &lt; &gt; &lt;= &gt;=  ==  !=  === !==  + - * % ++  -- &lt;&lt;  &gt;&gt;  &gt;&gt;&gt; &amp; | ^ ! ~ &amp;&amp;  ||  ? : = +=  -=  *=  %=  &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;=  &amp;=  |=  ^=  =&gt;
-</emu-t></emu-rhs></del>
-      <ins class="block"><emu-rhs><emu-t>{ ( ) [ ] . ... ; , &lt; &gt; &lt;= &gt;=  ==  !=  === !== + - * ** % ++  -- &lt;&lt;  &gt;&gt;  &gt;&gt;&gt; &amp; | ^ ! ~ &amp;&amp;  ||  ? : = +=  -=  *= **= %=  &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;=  &amp;=  |=  ^=  =&gt;
-</emu-t></emu-rhs></ins>
-
-    </emu-production>
-
-</emu-clause>
-</emu-clause>
-<emu-annex id="integration">
-  <h1><span class="secnum">A</span>Integration</h1>
-
-  <ol>
-    <li>The _Exponentiation Operator_ should come before _Multiplicative Operators_ in clause 12, which means _Multiplicative Operators_ move from 12.6 to 12.7.</li>
-    <li>Math.pow is updated to reference "Applying the ** operator"</li>
-  </ol>
-
-</emu-annex>
-
+<link rel="import" href="./modifications.html">
+<link rel="import" href="./annex.html">
 </body>

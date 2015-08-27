@@ -13,37 +13,37 @@
 
 
 
-<emu-clause id="exponentiation-operator">
+<emu-clause id="exp-operator">
   <h1>Exponentiation Operator</h1>
 
   <link rel="import" href="./syntax.html">
 
 
 
-  <emu-clause id="sec-exponentiation-operator-static-semantics-isfunctiondefinition">
+  <emu-clause id="sec-exp-operator-static-semantics-isfunctiondefinition">
     <h1>Static Semantics: IsFunctionDefinition</h1>
     <p>
-      <emu-prodref name="ExponentiationExpression" a="2" class="inline"></emu-prodref><br>
+      <emu-prodref name="UnaryExpression" a="2" class="inline"></emu-prodref><br>
     </p>
     <emu-alg>
       1. Return *false*.
     </emu-alg>
   </emu-clause>
 
-  <emu-clause id="sec-exponentiation-operator-static-semantics-isvalidsimpleassignmenttarget">
+  <emu-clause id="sec-exp-operator-static-semantics-isvalidsimpleassignmenttarget">
     <h1>Static Semantics: IsValidSimpleAssignmentTarget</h1>
     <p>
-      <emu-prodref name="ExponentiationExpression" a="2" class="inline"></emu-prodref><br>
+      <emu-prodref name="UnaryExpression" a="2" class="inline"></emu-prodref><br>
     </p>
     <emu-alg>
       1. Return *false*.
     </emu-alg>
   </emu-clause>
 
-  <emu-clause id="sec-exponentiation-operator-runtime-semantics-evaluation">
+  <emu-clause id="sec-exp-operator-runtime-semantics-evaluation">
     <h1>Runtime Semantics: Evaluation</h1>
     <p>
-      <emu-prodref name="ExponentiationExpression" a="2" class="inline"></emu-prodref><br>
+      <emu-prodref name="UnaryExpression" a="2" class="inline"></emu-prodref><br>
     </p>
     <emu-alg>
       1. Let _left_ be the result of evaluating _UnaryExpression_.

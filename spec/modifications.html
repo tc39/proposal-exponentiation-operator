@@ -2,13 +2,30 @@
   <h1>Modifications to existing productions</h1>
 
 
-  <emu-clause id="MultiplicativeExpression">
-    <h1>|MultiplicativeExpression|</h1>
-    <emu-production name="MultiplicativeExpression">
-      <del class="block"><emu-rhs><emu-nt>UnaryExpression[?Yield]</emu-nt></emu-rhs></del>
-      <ins class="block"><emu-rhs><emu-nt>ExponentiationExpression[?Yield]</emu-nt></emu-rhs></ins>
-      <del class="block"><emu-rhs><emu-nt>MultiplicativeExpression[?Yield] MultiplicativeOperator UnaryExpression[?Yield]</emu-nt></emu-rhs></del>
-      <ins class="block"><emu-rhs><emu-nt>MultiplicativeExpression[?Yield] MultiplicativeOperator ExponentiationExpression[?Yield]</emu-nt></emu-rhs></ins>
+  <emu-clause id="PostfixExpression">
+    <h1><del>|PostfixExpression|</del></h1>
+    <h1><ins>|IncrementExpression|</ins></h1>
+    <emu-production name="PostfixExpression" params="Yield">
+      <emu-rhs><emu-nt>LeftHandSideExpression[?Yield]</emu-nt></emu-rhs>
+      <emu-rhs><emu-nt>LeftHandSideExpression[?Yield] [no LineTerminator here] ++</emu-nt></emu-rhs>
+      <emu-rhs><emu-nt>LeftHandSideExpression[?Yield] [no LineTerminator here] --</emu-nt></emu-rhs>
+      <ins class="block"><emu-rhs><emu-nt>++ UnaryExpression[?Yield]</emu-nt></emu-rhs></ins>
+      <ins class="block"><emu-rhs><emu-nt>-- UnaryExpression[?Yield]</emu-nt></emu-rhs></ins>
+
+    </emu-production>
+  </emu-clause>
+
+  <emu-clause id="UnaryExpression">
+    <h1>|UnaryExpression|</h1>
+    <emu-production name="UnaryExpression">
+      <del class="block"><emu-rhs><emu-nt>PostfixExpression[?Yield]</emu-nt></emu-rhs></del>
+      <ins class="block"><emu-rhs><emu-nt>IncrementExpression[?Yield]</emu-nt></emu-rhs></ins>
+      ...
+      <del class="block"><emu-rhs><emu-nt>++ UnaryExpression[?Yield]</emu-nt></emu-rhs></del>
+      <del class="block"><emu-rhs><emu-nt>-- UnaryExpression[?Yield]</emu-nt></emu-rhs></del>
+      ...
+
+      <ins class="block"><emu-rhs><emu-nt>IncrementExpression[?Yield] ** UnaryExpression[?Yield]</emu-nt></emu-rhs></ins>
 
     </emu-production>
   </emu-clause>

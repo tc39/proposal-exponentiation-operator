@@ -12,12 +12,19 @@ Implementation Progress
   - V8 (https://code.google.com/p/v8/issues/detail?id=3915)
   - SpiderMonkey (https://bugzilla.mozilla.org/show_bug.cgi?id=1135708)
 
+## Authors
+
+- Rick Waldron
+- Claude Pache 
+
 ## Reviewers
 
+- Brian Terleson
 - Erik Arvidsson
 - Dmitry Lomov
 - Cait Potter
 - Jason Orendorff
+
 
 
 
