@@ -1,5 +1,6 @@
 <!doctype html>
 <meta charset="utf8">
+<script src="http://bterlson.github.io/ecmarkup/ecmarkup.js"></script>
 <link rel="stylesheet" href="https://bterlson.github.io/ecmarkup/elements.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
 <style>
@@ -9,91 +10,218 @@
 </style>
 
 <title>Exponentiation Operator</title>
-<h1>Exponentiation Operator</h1>
 
 
 
 <emu-clause id="exp-operator">
   <h1>Exponentiation Operator</h1>
 
-  <link rel="import" href="./syntax.html">
+
+  <emu-clause id="unary-operators">
+    <h1>Unary Operators</h1>
+
+    <emu-import href="./syntax-unaryexpression.html"></emu-import>
 
 
+    <emu-clause id="exp-operator-static-semantics-isfunctiondefinition">
+      <h1>Static Semantics: IsFunctionDefinition</h1>
+      <p>
+        <emu-import href="./syntax-unaryexpression-no-yield.html"></emu-import>
+      </p>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>
 
-  <emu-clause id="sec-exp-operator-static-semantics-isfunctiondefinition">
-    <h1>Static Semantics: IsFunctionDefinition</h1>
-    <p>
-      <emu-prodref name="UnaryExpression" a="2" class="inline"></emu-prodref><br>
-    </p>
-    <emu-alg>
-      1. Return *false*.
-    </emu-alg>
+    <emu-clause id="exp-operator-static-semantics-isvalidsimpleassignmenttarget">
+      <h1>Static Semantics: IsValidSimpleAssignmentTarget</h1>
+      <p>
+        <emu-import href="./syntax-unaryexpression-no-yield.html"></emu-import>
+      </p>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>
+
+    <emu-clause id="exp-operator-runtime-semantics-evaluation">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <p>
+        <emu-import href="./syntax-exponentiation-expression.html"></emu-import>
+      </p>
+      <emu-alg>
+        1. Let _left_ be the result of evaluating _IncrementExpression_.
+        1. Let _base_ be ToNumber(GetValue(_left_)).
+        1. ReturnIfAbrupt(_base_).
+        1. Let _right_ be the result of evaluating _UnaryExpression_.
+        1. Let _exponent_ be ToNumber(GetValue(_right_)).
+        1. ReturnIfAbrupt(_exponent_).
+        1. Return the result of <emu-xref href="#applying-the-exp-operator" title></emu-xref> with _base_ and _exponent_ as specified in <emu-xref href="#applying-the-exp-operator"></emu-xref>.
+      </emu-alg>
+
+    </emu-clause>
+
+    <emu-clause id="applying-the-exp-operator">
+      <h1>Applying the `**` operator</h1>
+
+      <p>
+        Returns an implementation-dependent approximation of the result of raising _base_ to the power _exponent_.
+      </p>
+
+      <emu-alg>
+        1. If _exponent_ is *NaN*, the result is *NaN*.
+        1. If _exponent_ is +0, the result is 1, even if _base_ is *NaN*.
+        1. If _exponent_ is −0, the result is 1, even if _base_ is *NaN*.
+        1. If _base_ is *NaN* and _exponent_ is nonzero, the result is *NaN*.
+        1. If abs(_base_) > 1 and _exponent_ is +∞, the result is +∞.
+        1. If abs(_base_) > 1 and _exponent_ is −∞, the result is +0.
+        1. If abs(_base_) is 1 and _exponent_ is +∞, the result is *NaN*.
+        1. If abs(_base_) is 1 and _exponent_ is −∞, the result is *NaN*.
+        1. If abs(_base_) < 1 and _exponent_ is +∞, the result is +0.
+        1. If abs(_base_) < 1 and _exponent_ is −∞, the result is +∞.
+        1. If _base_ is +∞ and y > 0, the result is +∞.
+        1. If _base_ is +∞ and y < 0, the result is +0.
+        1. If _base_ is −∞ and y > 0 and _exponent_ is an odd integer, the result is −∞.
+        1. If _base_ is −∞ and y > 0 and _exponent_ is not an odd integer, the result is +∞.
+        1. If _base_ is −∞ and y < 0 and _exponent_ is an odd integer, the result is −0.
+        1. If _base_ is −∞ and y < 0 and _exponent_ is not an odd integer, the result is +0.
+        1. If _base_ is +0 and y > 0, the result is +0.
+        1. If _base_ is +0 and y < 0, the result is +∞.
+        1. If _base_ is −0 and y > 0 and _exponent_ is an odd integer, the result is −0.
+        1. If _base_ is −0 and y > 0 and _exponent_ is not an odd integer, the result is +0.
+        1. If _base_ is −0 and y < 0 and _exponent_ is an odd integer, the result is −∞.
+        1. If _base_ is −0 and y < 0 and _exponent_ is not an odd integer, the result is +∞.
+        1. If _base_ < 0 and _base_ is finite and _exponent_ is finite and _exponent_ is not an integer, the result is *NaN*.
+      </emu-alg>
+    </emu-clause>
   </emu-clause>
+  <emu-clause id="IncrementExpression">
+    <h1>|IncrementExpression|</h1>
 
-  <emu-clause id="sec-exp-operator-static-semantics-isvalidsimpleassignmenttarget">
-    <h1>Static Semantics: IsValidSimpleAssignmentTarget</h1>
-    <p>
-      <emu-prodref name="UnaryExpression" a="2" class="inline"></emu-prodref><br>
-    </p>
-    <emu-alg>
-      1. Return *false*.
-    </emu-alg>
-  </emu-clause>
+    <emu-import href="./syntax-incrementexpression.html"></emu-import>
 
-  <emu-clause id="sec-exp-operator-runtime-semantics-evaluation">
-    <h1>Runtime Semantics: Evaluation</h1>
-    <p>
-      <emu-prodref name="UnaryExpression" a="2" class="inline"></emu-prodref><br>
-    </p>
-    <emu-alg>
-      1. Let _left_ be the result of evaluating _UnaryExpression_.
-      1. Let _lValue_ be GetValue(_left_).
-      1. ReturnIfAbrupt(_lValue_).
-      1. Let _right_ be the result of evaluating _ExponentiationExpression_.
-      1. Let _rValue_ be GetValue(_right_).
-      1. Let _base_ be ToNumber(_lValue_).
-      1. ReturnIfAbrupt(_base_).
-      1. Let _exponent_ be ToNumber(_rValue_).
-      1. ReturnIfAbrupt(_exponent_).
-      1. Return the result of applying the _ExpontentiationOperator_ `**` to _base_ and _exponent_ as specified in 1.4.
-    </emu-alg>
+    <emu-clause id="unary-operators-static-semantics-early-errors">
+      <h1>Static Semantics: Early Errors</h1>
 
-  </emu-clause>
+      <emu-import href="./static-semantics-no-yield.html"></emu-import>
 
-  <emu-clause id="sec-applying-the-exp-operator">
-    <h1>Applying the ** operator</h1>
+      <emu-alg>
+        1. It is an early Reference Error if IsValidSimpleAssignmentTarget of _LeftHandSideExpression_ is *false*.
+      </emu-alg>
 
-    <p>
-      Returns an implementation-dependent approximation of the result of raising _base_ to the power _exponent_.
-    </p>
+      <emu-note>
+        This replaces <emu-xref href="#sec-postfix-expressions-static-semantics-early-errors">ES2015, 12.4.1 Static Semantics: Early Errors</emu-xref>.
+      </emu-note>
+    </emu-clause>
 
-    <emu-alg>
-      1. If _exponent_ is *NaN*, the result is *NaN*.
-      1. If _exponent_ is +0, the result is 1, even if _base_ is *NaN*.
-      1. If _exponent_ is −0, the result is 1, even if _base_ is *NaN*.
-      1. If _base_ is *NaN* and _exponent_ is nonzero, the result is *NaN*.
-      1. If abs(_base_) > 1 and _exponent_ is +∞, the result is +∞.
-      1. If abs(_base_) > 1 and _exponent_ is −∞, the result is +0.
-      1. If abs(_base_) is 1 and _exponent_ is +∞, the result is *NaN*.
-      1. If abs(_base_) is 1 and _exponent_ is −∞, the result is *NaN*.
-      1. If abs(_base_) < 1 and _exponent_ is +∞, the result is +0.
-      1. If abs(_base_) < 1 and _exponent_ is −∞, the result is +∞.
-      1. If _base_ is +∞ and y > 0, the result is +∞.
-      1. If _base_ is +∞ and y < 0, the result is +0.
-      1. If _base_ is −∞ and y > 0 and _exponent_ is an odd integer, the result is −∞.
-      1. If _base_ is −∞ and y > 0 and _exponent_ is not an odd integer, the result is +∞.
-      1. If _base_ is −∞ and y < 0 and _exponent_ is an odd integer, the result is −0.
-      1. If _base_ is −∞ and y < 0 and _exponent_ is not an odd integer, the result is +0.
-      1. If _base_ is +0 and y > 0, the result is +0.
-      1. If _base_ is +0 and y < 0, the result is +∞.
-      1. If _base_ is −0 and y > 0 and _exponent_ is an odd integer, the result is −0.
-      1. If _base_ is −0 and y > 0 and _exponent_ is not an odd integer, the result is +0.
-      1. If _base_ is −0 and y < 0 and _exponent_ is an odd integer, the result is −∞.
-      1. If _base_ is −0 and y < 0 and _exponent_ is not an odd integer, the result is +∞.
-      1. If _base_ < 0 and _base_ is finite and _exponent_ is finite and _exponent_ is not an integer, the result is *NaN*.
-    </emu-alg>
+    <emu-clause id="incremementexpression-static-semantics-isfunctiondefinition">
+      <h1>Static Semantics: IsFunctionDefinition</h1>
+
+      <emu-import href="./static-semantics-no-yield.html"></emu-import>
+
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-note>
+        This replaces <emu-xref href="#sec-postfix-expressions-static-semantics-isfunctiondefinition">ES2015, 12.4.2 Static Semantics: IsFunctionDefinition</emu-xref>.
+      </emu-note>
+    </emu-clause>
+
+    <emu-clause id="incremementexpression-static-semantics-isvalidsimpleassignmenttarget">
+      <h1>Static Semantics: IsValidSimpleAssignmentTarget</h1>
+
+      <emu-import href="./static-semantics-no-yield.html"></emu-import>
+
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-note>
+        This replaces <emu-xref href="#sec-postfix-expressions-static-semantics-isvalidsimpleassignmenttarget">ES2015, 12.4.3 Static Semantics: IsValidSimpleAssignmentTarget</emu-xref>.
+      </emu-note>
+    </emu-clause>
+
+    <emu-clause id="postfix-increment-operator">
+      <h1>Postfix Increment Operator</h1>
+
+      <emu-clause id="postfix-increment-operator-runtime-semantics-evaluation">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <p>
+          <emu-prodref name="IncrementExpression" a="1"></emu-prodref>
+        </p>
+        <emu-alg>
+          1. Let _expr_ be the result of evaluating _LeftHandSideExpression_.
+          1. Let _oldValue_ be ToNumber(GetValue(_expr_)).
+          1. ReturnIfAbrupt(_oldValue_).
+          1. Let _newValue_ be the result of adding the value `1` to _oldValue_, using the same rules as for the `+` operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"></emu-xref>).
+          1. Let _status_ be PutValue(_expr_, _newValue_).
+          1. ReturnIfAbrupt(_status_).
+          1. Return _oldValue_.
+        </emu-alg>
+      </emu-clause>
+    </emu-clause>
+
+    <emu-clause id="postfix-decrement-operator">
+      <h1>Postfix Decrement Operator</h1>
+
+      <emu-clause id="postfix-increment-operator-runtime-semantics-evaluation">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <p>
+          <emu-prodref name="IncrementExpression" a="2"></emu-prodref>
+        </p>
+        <emu-alg>
+          1. Let _expr_ be the result of evaluating _LeftHandSideExpression_.
+          1. Let _oldValue_ be ToNumber(GetValue(_expr_)).
+          1. ReturnIfAbrupt(_oldValue_).
+          1. Let _newValue_ be the result of subtracting the value `1` from _oldValue_, using the same rules as for the `-` operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"></emu-xref>).
+          1. Let _status_ be PutValue(_expr_, _newValue_).
+          1. ReturnIfAbrupt(_status_).
+          1. Return _oldValue_.
+        </emu-alg>
+      </emu-clause>
+    </emu-clause>
+
+    <emu-clause id="prefix-increment-operator">
+      <h1>Prefix Increment Operator</h1>
+
+      <emu-clause id="prefix-increment-operator-runtime-semantics-evaluation">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <p>
+          <emu-prodref name="IncrementExpression" a="3"></emu-prodref>
+        </p>
+        <emu-alg>
+          1. Let _expr_ be the result of evaluating _LeftHandSideExpression_.
+          1. Let _oldValue_ be ToNumber(GetValue(_expr_)).
+          1. ReturnIfAbrupt(_oldValue_).
+          1. Let _newValue_ be the result of adding the value `1` to _oldValue_, using the same rules as for the `+` operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"></emu-xref>).
+          1. Let _status_ be PutValue(_expr_, _newValue_).
+          1. ReturnIfAbrupt(_status_).
+          1. Return _newValue_.
+        </emu-alg>
+      </emu-clause>
+    </emu-clause>
+
+    <emu-clause id="prefix-decrement-operator">
+      <h1>Prefix Decrement Operator</h1>
+
+      <emu-clause id="prefix-increment-operator-runtime-semantics-evaluation">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <p>
+          <emu-prodref name="IncrementExpression" a="4"></emu-prodref>
+        </p>
+        <emu-alg>
+          1. Let _expr_ be the result of evaluating _LeftHandSideExpression_.
+          1. Let _oldValue_ be ToNumber(GetValue(_expr_)).
+          1. ReturnIfAbrupt(_oldValue_).
+          1. Let _newValue_ be the result of subtracting the value `1` from _oldValue_, using the same rules as for the `-` operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"></emu-xref>).
+          1. Let _status_ be PutValue(_expr_, _newValue_).
+          1. ReturnIfAbrupt(_status_).
+          1. Return _newValue_.
+        </emu-alg>
+      </emu-clause>
+    </emu-clause>
   </emu-clause>
 </emu-clause>
 
-<link rel="import" href="./modifications.html">
-<link rel="import" href="./annex.html">
+
+
+<emu-import href="./modifications.html"></emu-import>
+<emu-import href="./annex.html"></emu-import>

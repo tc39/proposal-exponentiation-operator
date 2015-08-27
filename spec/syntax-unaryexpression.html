@@ -1,0 +1,13 @@
+<emu-grammar>
+  UnaryExpression[Yield] :
+    IncrementExpression[?Yield]
+    `delete` UnaryExpression[?Yield]
+    `void` UnaryExpression[?Yield]
+    `typeof` UnaryExpression[?Yield]
+    `+` UnaryExpression[?Yield]
+    `-` UnaryExpression[?Yield]
+    `~` UnaryExpression[?Yield]
+    `!` UnaryExpression[?Yield]
+    IncrementExpression[?Yield] `**` UnaryExpression[?Yield]    #1
+</emu-grammar>
+

@@ -1,5 +1,6 @@
 <!doctype html>
 <head><meta charset="utf8">
+<script src="http://bterlson.github.io/ecmarkup/ecmarkup.js"></script>
 <link rel="stylesheet" href="https://bterlson.github.io/ecmarkup/elements.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
 <style>
@@ -9,53 +10,313 @@
 </style>
 
 <title>Exponentiation Operator</title>
-</head><body><div id="menu-toggle">☰</div><div id="menu"><div id="menu-toc"><ol class="toc"><li><span class="item-toggle">◢</span><a href="#exp-operator" title="Exponentiation Operator"><span class="secnum">1</span> Exponentiation Operator</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-exp-operator-static-semantics-isfunctiondefinition" title="Static Semantics: IsFunctionDefinition"><span class="secnum">1.1</span> SS: IsFunctionDefinition</a></li><li><span class="item-toggle-none"></span><a href="#sec-exp-operator-static-semantics-isvalidsimpleassignmenttarget" title="Static Semantics: IsValidSimpleAssignmentTarget"><span class="secnum">1.2</span> SS: IsValidSimpleAssignmentTarget</a></li><li><span class="item-toggle-none"></span><a href="#sec-exp-operator-runtime-semantics-evaluation" title="Runtime Semantics: Evaluation"><span class="secnum">1.3</span> RS: Evaluation</a></li><li><span class="item-toggle-none"></span><a href="#sec-applying-the-exp-operator" title="Applying the ** operator"><span class="secnum">1.4</span> Applying the <emu-val></emu-val> operator</a></li></ol></li></ol></div></div><h1>Exponentiation Operator</h1>
 
 
 
-<emu-clause id="exp-operator">
+</head><body><div id="menu-toggle">☰</div><div id="menu"><div id="menu-toc"><ol class="toc"><li><span class="item-toggle">◢</span><a href="#exp-operator" title="Exponentiation Operator"><span class="secnum">1</span> Exponentiation Operator</a><ol class="toc"><li><span class="item-toggle">◢</span><a href="#unary-operators" title="Unary Operators"><span class="secnum">1.1</span> Unary Operators</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#exp-operator-static-semantics-isfunctiondefinition" title="Static Semantics: IsFunctionDefinition"><span class="secnum">1.1.1</span> SS: IsFunctionDefinition</a></li><li><span class="item-toggle-none"></span><a href="#exp-operator-static-semantics-isvalidsimpleassignmenttarget" title="Static Semantics: IsValidSimpleAssignmentTarget"><span class="secnum">1.1.2</span> SS: IsValidSimpleAssignmentTarget</a></li><li><span class="item-toggle-none"></span><a href="#exp-operator-runtime-semantics-evaluation" title="Runtime Semantics: Evaluation"><span class="secnum">1.1.3</span> RS: Evaluation</a></li><li><span class="item-toggle-none"></span><a href="#applying-the-exp-operator" title="Applying the `**` operator"><span class="secnum">1.1.4</span> Applying the <code>**</code> operator</a></li></ol></li><li><span class="item-toggle">◢</span><a href="#IncrementExpression" title="|IncrementExpression|"><span class="secnum">1.2</span> <emu-nt>IncrementExpression</emu-nt></a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#unary-operators-static-semantics-early-errors" title="Static Semantics: Early Errors"><span class="secnum">1.2.1</span> SS: Early Errors</a></li><li><span class="item-toggle-none"></span><a href="#incremementexpression-static-semantics-isfunctiondefinition" title="Static Semantics: IsFunctionDefinition"><span class="secnum">1.2.2</span> SS: IsFunctionDefinition</a></li><li><span class="item-toggle-none"></span><a href="#incremementexpression-static-semantics-isvalidsimpleassignmenttarget" title="Static Semantics: IsValidSimpleAssignmentTarget"><span class="secnum">1.2.3</span> SS: IsValidSimpleAssignmentTarget</a></li><li><span class="item-toggle">◢</span><a href="#postfix-increment-operator" title="Postfix Increment Operator"><span class="secnum">1.2.4</span> Postfix Increment Operator</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#postfix-increment-operator-runtime-semantics-evaluation" title="Runtime Semantics: Evaluation"><span class="secnum">1.2.4.1</span> RS: Evaluation</a></li></ol></li><li><span class="item-toggle">◢</span><a href="#postfix-decrement-operator" title="Postfix Decrement Operator"><span class="secnum">1.2.5</span> Postfix Decrement Operator</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#postfix-increment-operator-runtime-semantics-evaluation" title="Runtime Semantics: Evaluation"><span class="secnum">1.2.5.1</span> RS: Evaluation</a></li></ol></li><li><span class="item-toggle">◢</span><a href="#prefix-increment-operator" title="Prefix Increment Operator"><span class="secnum">1.2.6</span> Prefix Increment Operator</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#prefix-increment-operator-runtime-semantics-evaluation" title="Runtime Semantics: Evaluation"><span class="secnum">1.2.6.1</span> RS: Evaluation</a></li></ol></li><li><span class="item-toggle">◢</span><a href="#prefix-decrement-operator" title="Prefix Decrement Operator"><span class="secnum">1.2.7</span> Prefix Decrement Operator</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#prefix-increment-operator-runtime-semantics-evaluation" title="Runtime Semantics: Evaluation"><span class="secnum">1.2.7.1</span> RS: Evaluation</a></li></ol></li></ol></li></ol></li><li><span class="item-toggle">◢</span><a href="#modified-productions" title="Modifications to Existing Productions"><span class="secnum">2</span> Modifications to Existing Productions</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#PostfixExpression" title="|PostfixExpression|"><span class="secnum">2.1</span> <emu-nt>PostfixExpression</emu-nt></a></li><li><span class="item-toggle-none"></span><a href="#UnaryExpression" title="|UnaryExpression|"><span class="secnum">2.2</span> <emu-nt>UnaryExpression</emu-nt></a></li><li><span class="item-toggle-none"></span><a href="#AssignmentOperator" title="|AssignmentOperator|"><span class="secnum">2.3</span> <emu-nt>AssignmentOperator</emu-nt></a></li><li><span class="item-toggle-none"></span><a href="#Punctuators" title="|Punctuator|"><span class="secnum">2.4</span> <emu-nt>Punctuator</emu-nt></a></li></ol></li><li><span class="item-toggle-none"></span><a href="#integration" title="Integration"><span class="secnum">A</span> Integration</a></li></ol></div></div><emu-clause id="exp-operator">
   <h1><span class="secnum">1</span>Exponentiation Operator<span class="utils"><span class="anchor"><a href="#exp-operator">#</a></span></span></h1>
 
-  <link rel="import" href="./syntax.html">
+
+  <emu-clause id="unary-operators">
+    <h1><span class="secnum">1.1</span>Unary Operators<span class="utils"><span class="anchor"><a href="#unary-operators">#</a></span></span></h1>
+
+    <emu-import href="./syntax-unaryexpression.html"><emu-grammar><emu-production name="UnaryExpression" params="Yield" id="prod-UnaryExpression">
+    <emu-nt params="Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="16520f39"><emu-nt params="?Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="7a45ced6"><emu-t>delete</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="fecd74e3"><emu-t>void</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="ed6968ab"><emu-t>typeof</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="b2138170"><emu-t>+</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="d7c5d494"><emu-t>-</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="e14bfc0e"><emu-t>~</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="0514e7a2"><emu-t>!</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="1"><emu-nt params="?Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-t>**</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+
+</emu-import>
 
 
+    <emu-clause id="exp-operator-static-semantics-isfunctiondefinition">
+      <h1><span class="secnum">1.1.1</span>Static Semantics: IsFunctionDefinition<span class="utils"><span class="anchor"><a href="#exp-operator-static-semantics-isfunctiondefinition">#</a></span></span></h1>
+      <p>
+        <emu-import href="./syntax-unaryexpression-no-yield.html"><emu-grammar><emu-production name="UnaryExpression">
+    <emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="fb44382b"><emu-nt><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="bfdc08c3"><emu-t>delete</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="e5d8038f"><emu-t>void</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="ab1a2cb9"><emu-t>typeof</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="3b49039a"><emu-t>+</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="a03cca5c"><emu-t>-</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="07d36a79"><emu-t>~</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="b8b0af72"><emu-t>!</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="158224de"><emu-nt><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods></emu-mods></emu-nt><emu-t>**</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+</emu-import>
+      </p>
+      <emu-alg><ol><li>Return <emu-val>false</emu-val>.</li></ol></emu-alg>
+    </emu-clause>
 
-  <emu-clause id="sec-exp-operator-static-semantics-isfunctiondefinition">
-    <h1><span class="secnum">1.1</span>Static Semantics: IsFunctionDefinition<span class="utils"><span class="anchor"><a href="#sec-exp-operator-static-semantics-isfunctiondefinition">#</a></span></span></h1>
-    <p>
-      <emu-prodref name="WTF" a="2" class="inline"></emu-prodref><br>
-    </p>
-    <emu-alg><ol><li>Return <emu-val>false</emu-val>.</li></ol></emu-alg>
+    <emu-clause id="exp-operator-static-semantics-isvalidsimpleassignmenttarget">
+      <h1><span class="secnum">1.1.2</span>Static Semantics: IsValidSimpleAssignmentTarget<span class="utils"><span class="anchor"><a href="#exp-operator-static-semantics-isvalidsimpleassignmenttarget">#</a></span></span></h1>
+      <p>
+        <emu-import href="./syntax-unaryexpression-no-yield.html"><emu-grammar><emu-production name="UnaryExpression">
+    <emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="fb44382b"><emu-nt><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="bfdc08c3"><emu-t>delete</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="e5d8038f"><emu-t>void</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="ab1a2cb9"><emu-t>typeof</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="3b49039a"><emu-t>+</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="a03cca5c"><emu-t>-</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="07d36a79"><emu-t>~</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="b8b0af72"><emu-t>!</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="158224de"><emu-nt><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods></emu-mods></emu-nt><emu-t>**</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+</emu-import>
+      </p>
+      <emu-alg><ol><li>Return <emu-val>false</emu-val>.</li></ol></emu-alg>
+    </emu-clause>
+
+    <emu-clause id="exp-operator-runtime-semantics-evaluation">
+      <h1><span class="secnum">1.1.3</span>Runtime Semantics: Evaluation<span class="utils"><span class="anchor"><a href="#exp-operator-runtime-semantics-evaluation">#</a></span></span></h1>
+      <p>
+        <emu-import href="./syntax-exponentiation-expression.html"><emu-grammar><emu-production name="UnaryExpression">
+    <emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="158224de"><emu-nt><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods></emu-mods></emu-nt><emu-t>**</emu-t><emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+</emu-import>
+      </p>
+      <emu-alg><ol><li>Let <var>left</var> be the result of evaluating <var>IncrementExpression</var>.</li><li>Let <var>base</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tonumber">ToNumber</a>(<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-getvalue">GetValue</a>(<var>left</var>)).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>base</var>).</li><li>Let <var>right</var> be the result of evaluating <var>UnaryExpression</var>.</li><li>Let <var>exponent</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tonumber">ToNumber</a>(<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-getvalue">GetValue</a>(<var>right</var>)).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>exponent</var>).</li><li>Return the result of <emu-xref href="#applying-the-exp-operator" title=""><a href="#applying-the-exp-operator">Applying the `**` operator</a></emu-xref> with <var>base</var> and <var>exponent</var> as specified in <emu-xref href="#applying-the-exp-operator"><a href="#applying-the-exp-operator">1.1.4</a></emu-xref>.</li></ol></emu-alg>
+
+    </emu-clause>
+
+    <emu-clause id="applying-the-exp-operator">
+      <h1><span class="secnum">1.1.4</span>Applying the <code>**</code> operator<span class="utils"><span class="anchor"><a href="#applying-the-exp-operator">#</a></span></span></h1>
+
+      <p>
+        Returns an implementation-dependent approximation of the result of raising <var>base</var> to the power <var>exponent</var>.
+      </p>
+
+      <emu-alg><ol><li>If <var>exponent</var> is <emu-val>NaN</emu-val>, the result is <emu-val>NaN</emu-val>.</li><li>If <var>exponent</var> is +0, the result is 1, even if <var>base</var> is <emu-val>NaN</emu-val>.</li><li>If <var>exponent</var> is −0, the result is 1, even if <var>base</var> is <emu-val>NaN</emu-val>.</li><li>If <var>base</var> is <emu-val>NaN</emu-val> and <var>exponent</var> is nonzero, the result is <emu-val>NaN</emu-val>.</li><li>If abs(<var>base</var>) &gt; 1 and <var>exponent</var> is +∞, the result is +∞.</li><li>If abs(<var>base</var>) &gt; 1 and <var>exponent</var> is −∞, the result is +0.</li><li>If abs(<var>base</var>) is 1 and <var>exponent</var> is +∞, the result is <emu-val>NaN</emu-val>.</li><li>If abs(<var>base</var>) is 1 and <var>exponent</var> is −∞, the result is <emu-val>NaN</emu-val>.</li><li>If abs(<var>base</var>) &lt; 1 and <var>exponent</var> is +∞, the result is +0.</li><li>If abs(<var>base</var>) &lt; 1 and <var>exponent</var> is −∞, the result is +∞.</li><li>If <var>base</var> is +∞ and y &gt; 0, the result is +∞.</li><li>If <var>base</var> is +∞ and y &lt; 0, the result is +0.</li><li>If <var>base</var> is −∞ and y &gt; 0 and <var>exponent</var> is an odd integer, the result is −∞.</li><li>If <var>base</var> is −∞ and y &gt; 0 and <var>exponent</var> is not an odd integer, the result is +∞.</li><li>If <var>base</var> is −∞ and y &lt; 0 and <var>exponent</var> is an odd integer, the result is −0.</li><li>If <var>base</var> is −∞ and y &lt; 0 and <var>exponent</var> is not an odd integer, the result is +0.</li><li>If <var>base</var> is +0 and y &gt; 0, the result is +0.</li><li>If <var>base</var> is +0 and y &lt; 0, the result is +∞.</li><li>If <var>base</var> is −0 and y &gt; 0 and <var>exponent</var> is an odd integer, the result is −0.</li><li>If <var>base</var> is −0 and y &gt; 0 and <var>exponent</var> is not an odd integer, the result is +0.</li><li>If <var>base</var> is −0 and y &lt; 0 and <var>exponent</var> is an odd integer, the result is −∞.</li><li>If <var>base</var> is −0 and y &lt; 0 and <var>exponent</var> is not an odd integer, the result is +∞.</li><li>If <var>base</var> &lt; 0 and <var>base</var> is finite and <var>exponent</var> is finite and <var>exponent</var> is not an integer, the result is <emu-val>NaN</emu-val>.</li></ol></emu-alg>
+    </emu-clause>
   </emu-clause>
+  <emu-clause id="IncrementExpression">
+    <h1><span class="secnum">1.2</span><emu-nt>IncrementExpression</emu-nt><span class="utils"><span class="anchor"><a href="#IncrementExpression">#</a></span></span></h1>
 
-  <emu-clause id="sec-exp-operator-static-semantics-isvalidsimpleassignmenttarget">
-    <h1><span class="secnum">1.2</span>Static Semantics: IsValidSimpleAssignmentTarget<span class="utils"><span class="anchor"><a href="#sec-exp-operator-static-semantics-isvalidsimpleassignmenttarget">#</a></span></span></h1>
-    <p>
-      <emu-prodref name="WTF" a="2" class="inline"></emu-prodref><br>
-    </p>
-    <emu-alg><ol><li>Return <emu-val>false</emu-val>.</li></ol></emu-alg>
-  </emu-clause>
+    <emu-import href="./syntax-incrementexpression.html"><emu-grammar><emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="377fae86"><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="1"><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-gann>[no <emu-nt><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LineTerminator">LineTerminator</a><emu-mods></emu-mods></emu-nt> here]</emu-gann><emu-t>++</emu-t></emu-rhs>
+    <emu-rhs a="2"><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-gann>[no <emu-nt><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LineTerminator">LineTerminator</a><emu-mods></emu-mods></emu-nt> here]</emu-gann><emu-t>--</emu-t></emu-rhs>
+    <emu-rhs a="3"><emu-t>++</emu-t><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="4"><emu-t>--</emu-t><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
 
-  <emu-clause id="sec-exp-operator-runtime-semantics-evaluation">
-    <h1><span class="secnum">1.3</span>Runtime Semantics: Evaluation<span class="utils"><span class="anchor"><a href="#sec-exp-operator-runtime-semantics-evaluation">#</a></span></span></h1>
-    <p>
-      <emu-prodref name="WTF" a="2" class="inline"></emu-prodref><br>
-    </p>
-    <emu-alg><ol><li>Let <var>left</var> be the result of evaluating <var>WTF</var>.</li><li>Let <var>lValue</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-getvalue">GetValue</a>(<var>left</var>).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>lValue</var>).</li><li>Let <var>right</var> be the result of evaluating <var>ExponentiationExpression</var>.</li><li>Let <var>rValue</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-getvalue">GetValue</a>(<var>right</var>).</li><li>Let <var>base</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tonumber">ToNumber</a>(<var>lValue</var>).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>base</var>).</li><li>Let <var>exponent</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tonumber">ToNumber</a>(<var>rValue</var>).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>exponent</var>).</li><li>Return the result of applying the <var>ExpontentiationOperator</var> <code>**</code> to <var>base</var> and <var>exponent</var> as specified in 1.4.</li></ol></emu-alg>
+</emu-import>
 
-  </emu-clause>
+    <emu-clause id="unary-operators-static-semantics-early-errors">
+      <h1><span class="secnum">1.2.1</span>Static Semantics: Early Errors<span class="utils"><span class="anchor"><a href="#unary-operators-static-semantics-early-errors">#</a></span></span></h1>
 
-  <emu-clause id="sec-applying-the-exp-operator">
-    <h1><span class="secnum">1.4</span>Applying the <emu-val></emu-val> operator<span class="utils"><span class="anchor"><a href="#sec-applying-the-exp-operator">#</a></span></span></h1>
+      <emu-import href="./static-semantics-no-yield.html"><p>
+  <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="1" class="inline">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="1"><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-gann>[no <emu-nt><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LineTerminator">LineTerminator</a><emu-mods></emu-mods></emu-nt> here]</emu-gann><emu-t>++</emu-t></emu-rhs></emu-production><br>
+  <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="2" class="inline">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="2"><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-gann>[no <emu-nt><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LineTerminator">LineTerminator</a><emu-mods></emu-mods></emu-nt> here]</emu-gann><emu-t>--</emu-t></emu-rhs></emu-production><br>
+  <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="3" class="inline">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="3"><emu-t>++</emu-t><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></emu-production><br>
+  <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="4" class="inline">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="4"><emu-t>--</emu-t><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></emu-production><br>
+</p>
+</emu-import>
 
-    <p>
-      Returns an implementation-dependent approximation of the result of raising <var>base</var> to the power <var>exponent</var>.
-    </p>
+      <emu-alg><ol><li>It is an early <emu-xref href="#sec-reference-specification-type"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-reference-specification-type">Reference</a></emu-xref> Error if IsValidSimpleAssignmentTarget of <var>LeftHandSideExpression</var> is <emu-val>false</emu-val>.</li></ol></emu-alg>
 
-    <emu-alg><ol><li>If <var>exponent</var> is <emu-val>NaN</emu-val>, the result is <emu-val>NaN</emu-val>.</li><li>If <var>exponent</var> is +0, the result is 1, even if <var>base</var> is <emu-val>NaN</emu-val>.</li><li>If <var>exponent</var> is −0, the result is 1, even if <var>base</var> is <emu-val>NaN</emu-val>.</li><li>If <var>base</var> is <emu-val>NaN</emu-val> and <var>exponent</var> is nonzero, the result is <emu-val>NaN</emu-val>.</li><li>If abs(<var>base</var>) &gt; 1 and <var>exponent</var> is +∞, the result is +∞.</li><li>If abs(<var>base</var>) &gt; 1 and <var>exponent</var> is −∞, the result is +0.</li><li>If abs(<var>base</var>) is 1 and <var>exponent</var> is +∞, the result is <emu-val>NaN</emu-val>.</li><li>If abs(<var>base</var>) is 1 and <var>exponent</var> is −∞, the result is <emu-val>NaN</emu-val>.</li><li>If abs(<var>base</var>) &lt; 1 and <var>exponent</var> is +∞, the result is +0.</li><li>If abs(<var>base</var>) &lt; 1 and <var>exponent</var> is −∞, the result is +∞.</li><li>If <var>base</var> is +∞ and y &gt; 0, the result is +∞.</li><li>If <var>base</var> is +∞ and y &lt; 0, the result is +0.</li><li>If <var>base</var> is −∞ and y &gt; 0 and <var>exponent</var> is an odd integer, the result is −∞.</li><li>If <var>base</var> is −∞ and y &gt; 0 and <var>exponent</var> is not an odd integer, the result is +∞.</li><li>If <var>base</var> is −∞ and y &lt; 0 and <var>exponent</var> is an odd integer, the result is −0.</li><li>If <var>base</var> is −∞ and y &lt; 0 and <var>exponent</var> is not an odd integer, the result is +0.</li><li>If <var>base</var> is +0 and y &gt; 0, the result is +0.</li><li>If <var>base</var> is +0 and y &lt; 0, the result is +∞.</li><li>If <var>base</var> is −0 and y &gt; 0 and <var>exponent</var> is an odd integer, the result is −0.</li><li>If <var>base</var> is −0 and y &gt; 0 and <var>exponent</var> is not an odd integer, the result is +0.</li><li>If <var>base</var> is −0 and y &lt; 0 and <var>exponent</var> is an odd integer, the result is −∞.</li><li>If <var>base</var> is −0 and y &lt; 0 and <var>exponent</var> is not an odd integer, the result is +∞.</li><li>If <var>base</var> &lt; 0 and <var>base</var> is finite and <var>exponent</var> is finite and <var>exponent</var> is not an integer, the result is <emu-val>NaN</emu-val>.</li></ol></emu-alg>
+      <emu-note><span class="note">Note</span>
+        This replaces  <emu-xref href="#sec-postfix-expressions-static-semantics-early-errors"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-postfix-expressions-static-semantics-early-errors">ES2015, 12.4.1 Static Semantics: Early Errors</a></emu-xref>.
+      </emu-note>
+    </emu-clause>
+
+    <emu-clause id="incremementexpression-static-semantics-isfunctiondefinition">
+      <h1><span class="secnum">1.2.2</span>Static Semantics: IsFunctionDefinition<span class="utils"><span class="anchor"><a href="#incremementexpression-static-semantics-isfunctiondefinition">#</a></span></span></h1>
+
+      <emu-import href="./static-semantics-no-yield.html"><p>
+  <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="1" class="inline">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="1"><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-gann>[no <emu-nt><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LineTerminator">LineTerminator</a><emu-mods></emu-mods></emu-nt> here]</emu-gann><emu-t>++</emu-t></emu-rhs></emu-production><br>
+  <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="2" class="inline">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="2"><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-gann>[no <emu-nt><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LineTerminator">LineTerminator</a><emu-mods></emu-mods></emu-nt> here]</emu-gann><emu-t>--</emu-t></emu-rhs></emu-production><br>
+  <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="3" class="inline">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="3"><emu-t>++</emu-t><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></emu-production><br>
+  <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="4" class="inline">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="4"><emu-t>--</emu-t><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></emu-production><br>
+</p>
+</emu-import>
+
+      <emu-alg><ol><li>Return <emu-val>false</emu-val>.</li></ol></emu-alg>
+      <emu-note><span class="note">Note</span>
+        This replaces  <emu-xref href="#sec-postfix-expressions-static-semantics-isfunctiondefinition"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-postfix-expressions-static-semantics-isfunctiondefinition">ES2015, 12.4.2 Static Semantics: IsFunctionDefinition</a></emu-xref>.
+      </emu-note>
+    </emu-clause>
+
+    <emu-clause id="incremementexpression-static-semantics-isvalidsimpleassignmenttarget">
+      <h1><span class="secnum">1.2.3</span>Static Semantics: IsValidSimpleAssignmentTarget<span class="utils"><span class="anchor"><a href="#incremementexpression-static-semantics-isvalidsimpleassignmenttarget">#</a></span></span></h1>
+
+      <emu-import href="./static-semantics-no-yield.html"><p>
+  <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="1" class="inline">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="1"><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-gann>[no <emu-nt><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LineTerminator">LineTerminator</a><emu-mods></emu-mods></emu-nt> here]</emu-gann><emu-t>++</emu-t></emu-rhs></emu-production><br>
+  <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="2" class="inline">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="2"><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-gann>[no <emu-nt><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LineTerminator">LineTerminator</a><emu-mods></emu-mods></emu-nt> here]</emu-gann><emu-t>--</emu-t></emu-rhs></emu-production><br>
+  <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="3" class="inline">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="3"><emu-t>++</emu-t><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></emu-production><br>
+  <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="4" class="inline">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="4"><emu-t>--</emu-t><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></emu-production><br>
+</p>
+</emu-import>
+
+      <emu-alg><ol><li>Return <emu-val>false</emu-val>.</li></ol></emu-alg>
+      <emu-note><span class="note">Note</span>
+        This replaces  <emu-xref href="#sec-postfix-expressions-static-semantics-isvalidsimpleassignmenttarget"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-postfix-expressions-static-semantics-isvalidsimpleassignmenttarget">ES2015, 12.4.3 Static Semantics: IsValidSimpleAssignmentTarget</a></emu-xref>.
+      </emu-note>
+    </emu-clause>
+
+    <emu-clause id="postfix-increment-operator">
+      <h1><span class="secnum">1.2.4</span>Postfix Increment Operator<span class="utils"><span class="anchor"><a href="#postfix-increment-operator">#</a></span></span></h1>
+
+      <emu-clause id="postfix-increment-operator-runtime-semantics-evaluation">
+        <h1><span class="secnum">1.2.4.1</span>Runtime Semantics: Evaluation<span class="utils"><span class="anchor"><a href="#postfix-increment-operator-runtime-semantics-evaluation">#</a></span></span></h1>
+        <p>
+          <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="1">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="1"><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-gann>[no <emu-nt><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LineTerminator">LineTerminator</a><emu-mods></emu-mods></emu-nt> here]</emu-gann><emu-t>++</emu-t></emu-rhs></emu-production>
+        </p>
+        <emu-alg><ol><li>Let <var>expr</var> be the result of evaluating <var>LeftHandSideExpression</var>.</li><li>Let <var>oldValue</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tonumber">ToNumber</a>(<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-getvalue">GetValue</a>(<var>expr</var>)).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>oldValue</var>).</li><li>Let <var>newValue</var> be the result of adding the value <code>1</code> to <var>oldValue</var>, using the same rules as for the <code>+</code> operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-applying-the-additive-operators-to-numbers">12.7.5</a></emu-xref>).</li><li>Let <var>status</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-putvalue">PutValue</a>(<var>expr</var>, <var>newValue</var>).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>status</var>).</li><li>Return <var>oldValue</var>.</li></ol></emu-alg>
+      </emu-clause>
+    </emu-clause>
+
+    <emu-clause id="postfix-decrement-operator">
+      <h1><span class="secnum">1.2.5</span>Postfix Decrement Operator<span class="utils"><span class="anchor"><a href="#postfix-decrement-operator">#</a></span></span></h1>
+
+      <emu-clause id="postfix-increment-operator-runtime-semantics-evaluation">
+        <h1><span class="secnum">1.2.5.1</span>Runtime Semantics: Evaluation<span class="utils"><span class="anchor"><a href="#postfix-increment-operator-runtime-semantics-evaluation">#</a></span></span></h1>
+        <p>
+          <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="2">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="2"><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-gann>[no <emu-nt><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LineTerminator">LineTerminator</a><emu-mods></emu-mods></emu-nt> here]</emu-gann><emu-t>--</emu-t></emu-rhs></emu-production>
+        </p>
+        <emu-alg><ol><li>Let <var>expr</var> be the result of evaluating <var>LeftHandSideExpression</var>.</li><li>Let <var>oldValue</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tonumber">ToNumber</a>(<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-getvalue">GetValue</a>(<var>expr</var>)).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>oldValue</var>).</li><li>Let <var>newValue</var> be the result of subtracting the value <code>1</code> from <var>oldValue</var>, using the same rules as for the <code>-</code> operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-applying-the-additive-operators-to-numbers">12.7.5</a></emu-xref>).</li><li>Let <var>status</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-putvalue">PutValue</a>(<var>expr</var>, <var>newValue</var>).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>status</var>).</li><li>Return <var>oldValue</var>.</li></ol></emu-alg>
+      </emu-clause>
+    </emu-clause>
+
+    <emu-clause id="prefix-increment-operator">
+      <h1><span class="secnum">1.2.6</span>Prefix Increment Operator<span class="utils"><span class="anchor"><a href="#prefix-increment-operator">#</a></span></span></h1>
+
+      <emu-clause id="prefix-increment-operator-runtime-semantics-evaluation">
+        <h1><span class="secnum">1.2.6.1</span>Runtime Semantics: Evaluation<span class="utils"><span class="anchor"><a href="#prefix-increment-operator-runtime-semantics-evaluation">#</a></span></span></h1>
+        <p>
+          <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="3">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="3"><emu-t>++</emu-t><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></emu-production>
+        </p>
+        <emu-alg><ol><li>Let <var>expr</var> be the result of evaluating <var>LeftHandSideExpression</var>.</li><li>Let <var>oldValue</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tonumber">ToNumber</a>(<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-getvalue">GetValue</a>(<var>expr</var>)).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>oldValue</var>).</li><li>Let <var>newValue</var> be the result of adding the value <code>1</code> to <var>oldValue</var>, using the same rules as for the <code>+</code> operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-applying-the-additive-operators-to-numbers">12.7.5</a></emu-xref>).</li><li>Let <var>status</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-putvalue">PutValue</a>(<var>expr</var>, <var>newValue</var>).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>status</var>).</li><li>Return <var>newValue</var>.</li></ol></emu-alg>
+      </emu-clause>
+    </emu-clause>
+
+    <emu-clause id="prefix-decrement-operator">
+      <h1><span class="secnum">1.2.7</span>Prefix Decrement Operator<span class="utils"><span class="anchor"><a href="#prefix-decrement-operator">#</a></span></span></h1>
+
+      <emu-clause id="prefix-increment-operator-runtime-semantics-evaluation">
+        <h1><span class="secnum">1.2.7.1</span>Runtime Semantics: Evaluation<span class="utils"><span class="anchor"><a href="#prefix-increment-operator-runtime-semantics-evaluation">#</a></span></span></h1>
+        <p>
+          <emu-production name="IncrementExpression" params="Yield" id="prod-IncrementExpression" a="4">
+    <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="4"><emu-t>--</emu-t><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></emu-production>
+        </p>
+        <emu-alg><ol><li>Let <var>expr</var> be the result of evaluating <var>LeftHandSideExpression</var>.</li><li>Let <var>oldValue</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tonumber">ToNumber</a>(<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-getvalue">GetValue</a>(<var>expr</var>)).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>oldValue</var>).</li><li>Let <var>newValue</var> be the result of subtracting the value <code>1</code> from <var>oldValue</var>, using the same rules as for the <code>-</code> operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-applying-the-additive-operators-to-numbers">12.7.5</a></emu-xref>).</li><li>Let <var>status</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-putvalue">PutValue</a>(<var>expr</var>, <var>newValue</var>).</li><li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>status</var>).</li><li>Return <var>newValue</var>.</li></ol></emu-alg>
+      </emu-clause>
+    </emu-clause>
   </emu-clause>
 </emu-clause>
 
-<link rel="import" href="./modifications.html">
-<link rel="import" href="./annex.html">
+
+
+<emu-import href="./modifications.html"><emu-clause id="modified-productions">
+  <h1><span class="secnum">2</span>Modifications to Existing Productions<span class="utils"><span class="anchor"><a href="#modified-productions">#</a></span></span></h1>
+
+
+  <emu-clause id="PostfixExpression">
+    <h1><span class="secnum">2.1</span><del><emu-nt>PostfixExpression</emu-nt></del><span class="utils"><span class="anchor"><a href="#PostfixExpression">#</a></span></span></h1>
+    <h1><ins><emu-nt>IncrementExpression</emu-nt></ins></h1>
+
+    <emu-production name="IncrementExpression" params="Yield">
+
+      <emu-nt params="Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+      <emu-rhs><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-t>[</emu-t><emu-gann>[no <emu-nt><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LineTerminator">LineTerminator</a><emu-mods></emu-mods></emu-nt> here]</emu-gann><emu-t>]</emu-t><emu-t>++</emu-t></emu-rhs>
+      <emu-rhs><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-t>[</emu-t><emu-gann>[no <emu-nt><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LineTerminator">LineTerminator</a><emu-mods></emu-mods></emu-nt> here]</emu-gann><emu-t>]</emu-t><emu-t>--</emu-t></emu-rhs>
+      <ins class="block"><emu-rhs><emu-t>++</emu-t><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></ins>
+      <ins class="block"><emu-rhs><emu-t>--</emu-t><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></ins>
+    </emu-production>
+
+    <!-- <emu-clause id="incrementexpression-static-semantics-early-errors">
+
+
+    </emu-clause> -->
+
+
+
+  </emu-clause>
+
+
+  <emu-clause id="UnaryExpression">
+    <h1><span class="secnum">2.2</span><emu-nt>UnaryExpression</emu-nt><span class="utils"><span class="anchor"><a href="#UnaryExpression">#</a></span></span></h1>
+    <emu-production name="UnaryExpression">
+      <emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods></emu-mods></emu-nt><emu-geq>:</emu-geq><del class="block"><emu-rhs><emu-nt params="?Yield"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#prod-PostfixExpression">PostfixExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></del>
+      <ins class="block"><emu-rhs><emu-nt params="?Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></ins>
+
+      <emu-rhs><emu-t>delete</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+      <emu-rhs><emu-t>void</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+      <emu-rhs><emu-t>typeof</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+      <del class="block"><emu-rhs><emu-t>++</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></del>
+      <del class="block"><emu-rhs><emu-t>--</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></del>
+      <emu-rhs><emu-t>+</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+      <emu-rhs><emu-t>-</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+      <emu-rhs><emu-t>~</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+      <emu-rhs><emu-t>!</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+
+      <ins class="block"><emu-rhs><emu-nt params="?Yield"><a href="#prod-IncrementExpression">IncrementExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-t>**</emu-t><emu-nt params="?Yield"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs></ins>
+
+      <emu-note><span class="note">Note</span>
+        <ul>
+          <li>Remove <emu-xref href="#sec-unary-operators-static-semantics-early-errors"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-unary-operators-static-semantics-early-errors">ES2015, 12.5.1 Static Semantics: Early Errors</a></emu-xref>, which is now defined as part of <emu-xref href="#IncrementExpression"><a href="#IncrementExpression">1.2</a></emu-xref>, under <emu-xref href="#unary-operators-static-semantics-early-errors" title=""><a href="#unary-operators-static-semantics-early-errors">Static Semantics: Early Errors</a></emu-xref>.</li>
+
+          <li>Remove <emu-xref href="#sec-prefix-increment-operator"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-prefix-increment-operator">ES2015, 12.5.7 Prefix Increment Operator</a></emu-xref>, which is now defined as part of <emu-xref href="#IncrementExpression"><a href="#IncrementExpression">1.2</a></emu-xref>, under <emu-xref href="#prefix-increment-operator" title=""><a href="#prefix-increment-operator">Prefix Increment Operator</a></emu-xref>.</li>
+
+          <li>Remove <emu-xref href="#sec-prefix-decrement-operator"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-prefix-decrement-operator">ES2015, 12.5.8 Prefix Decrement Operator</a></emu-xref>, which is now defined as part of <emu-xref href="#IncrementExpression"><a href="#IncrementExpression">1.2</a></emu-xref>, under <emu-xref href="#prefix-decrement-operator" title=""><a href="#prefix-decrement-operator">Prefix Decrement Operator</a></emu-xref>.</li>
+        </ul>
+      </emu-note>
+    </emu-production>
+  </emu-clause>
+
+
+
+
+  <emu-clause id="AssignmentOperator">
+    <h1><span class="secnum">2.3</span><emu-nt>AssignmentOperator</emu-nt><span class="utils"><span class="anchor"><a href="#AssignmentOperator">#</a></span></span></h1>
+    <emu-production name="AssignmentOperator" oneof="" id="prod-AssignmentOperator">
+      <emu-nt><a href="#prod-AssignmentOperator">AssignmentOperator</a><emu-mods></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-oneof>one of</emu-oneof><del class="block"><emu-rhs><emu-t>= *= /= %= += -= &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |=</emu-t></emu-rhs></del>
+      <ins class="block"><emu-rhs><emu-t>= *= /= %= += -= &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |= **=</emu-t></emu-rhs></ins>
+    </emu-production>
+  </emu-clause>
+
+
+  <emu-clause id="Punctuators">
+    <h1><span class="secnum">2.4</span><emu-nt>Punctuator</emu-nt><span class="utils"><span class="anchor"><a href="#Punctuators">#</a></span></span></h1>
+    <emu-production name="Punctuator" type="lexical" oneof="" id="prod-Punctuator">
+      <emu-nt><a href="#prod-Punctuator">Punctuator</a><emu-mods></emu-mods></emu-nt><emu-geq>::</emu-geq><emu-oneof>one of</emu-oneof><del class="block"><emu-rhs><emu-t>{ ( ) [ ] . ... ; , &lt; &gt; &lt;= &gt;=  ==  !=  === !==  + - * % ++  -- &lt;&lt;  &gt;&gt;  &gt;&gt;&gt; &amp; | ^ ! ~ &amp;&amp;  ||  ? : = +=  -=  *=  %=  &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;=  &amp;=  |=  ^=  =&gt;
+</emu-t></emu-rhs></del>
+      <ins class="block"><emu-rhs><emu-t>{ ( ) [ ] . ... ; , &lt; &gt; &lt;= &gt;=  ==  !=  === !== + - * ** % ++  -- &lt;&lt;  &gt;&gt;  &gt;&gt;&gt; &amp; | ^ ! ~ &amp;&amp;  ||  ? : = +=  -=  *= **= %=  &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;=  &amp;=  |=  ^=  =&gt;
+</emu-t></emu-rhs></ins>
+
+    </emu-production>
+
+</emu-clause>
+</emu-clause></emu-import>
+<emu-import href="./annex.html"><emu-annex id="integration">
+  <h1><span class="secnum">A</span>Integration<span class="utils"><span class="anchor"><a href="#integration">#</a></span></span></h1>
+
+  <ol>
+    <li>Math.pow is updated to reference "Applying the <emu-val></emu-val> operator"</li>
+    <li>All occurrences of <var>PostfixExpression</var> must be changed to  <ins><var>IncrementExpression</var></ins></li>
+  </ol>
+
+</emu-annex>
+</emu-import>
 </body>
