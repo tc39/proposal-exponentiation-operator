@@ -16,84 +16,6 @@
 <emu-clause id="exp-operator">
   <h1>Exponentiation Operator</h1>
 
-
-  <emu-clause id="unary-operators">
-    <h1>Unary Operators</h1>
-
-    <emu-import href="./syntax-unaryexpression.html"></emu-import>
-
-
-    <emu-clause id="exp-operator-static-semantics-isfunctiondefinition">
-      <h1>Static Semantics: IsFunctionDefinition</h1>
-      <p>
-        <emu-import href="./syntax-unaryexpression-no-yield.html"></emu-import>
-      </p>
-      <emu-alg>
-        1. Return *false*.
-      </emu-alg>
-    </emu-clause>
-
-    <emu-clause id="exp-operator-static-semantics-isvalidsimpleassignmenttarget">
-      <h1>Static Semantics: IsValidSimpleAssignmentTarget</h1>
-      <p>
-        <emu-import href="./syntax-unaryexpression-no-yield.html"></emu-import>
-      </p>
-      <emu-alg>
-        1. Return *false*.
-      </emu-alg>
-    </emu-clause>
-
-    <emu-clause id="exp-operator-runtime-semantics-evaluation">
-      <h1>Runtime Semantics: Evaluation</h1>
-      <p>
-        <emu-import href="./syntax-exponentiation-expression.html"></emu-import>
-      </p>
-      <emu-alg>
-        1. Let _left_ be the result of evaluating _IncrementExpression_.
-        1. Let _base_ be ToNumber(GetValue(_left_)).
-        1. ReturnIfAbrupt(_base_).
-        1. Let _right_ be the result of evaluating _UnaryExpression_.
-        1. Let _exponent_ be ToNumber(GetValue(_right_)).
-        1. ReturnIfAbrupt(_exponent_).
-        1. Return the result of <emu-xref href="#applying-the-exp-operator" title></emu-xref> with _base_ and _exponent_ as specified in <emu-xref href="#applying-the-exp-operator"></emu-xref>.
-      </emu-alg>
-
-    </emu-clause>
-
-    <emu-clause id="applying-the-exp-operator">
-      <h1>Applying the `**` operator</h1>
-
-      <p>
-        Returns an implementation-dependent approximation of the result of raising _base_ to the power _exponent_.
-      </p>
-
-      <emu-alg>
-        1. If _exponent_ is *NaN*, the result is *NaN*.
-        1. If _exponent_ is +0, the result is 1, even if _base_ is *NaN*.
-        1. If _exponent_ is −0, the result is 1, even if _base_ is *NaN*.
-        1. If _base_ is *NaN* and _exponent_ is nonzero, the result is *NaN*.
-        1. If abs(_base_) > 1 and _exponent_ is +∞, the result is +∞.
-        1. If abs(_base_) > 1 and _exponent_ is −∞, the result is +0.
-        1. If abs(_base_) is 1 and _exponent_ is +∞, the result is *NaN*.
-        1. If abs(_base_) is 1 and _exponent_ is −∞, the result is *NaN*.
-        1. If abs(_base_) < 1 and _exponent_ is +∞, the result is +0.
-        1. If abs(_base_) < 1 and _exponent_ is −∞, the result is +∞.
-        1. If _base_ is +∞ and y > 0, the result is +∞.
-        1. If _base_ is +∞ and y < 0, the result is +0.
-        1. If _base_ is −∞ and y > 0 and _exponent_ is an odd integer, the result is −∞.
-        1. If _base_ is −∞ and y > 0 and _exponent_ is not an odd integer, the result is +∞.
-        1. If _base_ is −∞ and y < 0 and _exponent_ is an odd integer, the result is −0.
-        1. If _base_ is −∞ and y < 0 and _exponent_ is not an odd integer, the result is +0.
-        1. If _base_ is +0 and y > 0, the result is +0.
-        1. If _base_ is +0 and y < 0, the result is +∞.
-        1. If _base_ is −0 and y > 0 and _exponent_ is an odd integer, the result is −0.
-        1. If _base_ is −0 and y > 0 and _exponent_ is not an odd integer, the result is +0.
-        1. If _base_ is −0 and y < 0 and _exponent_ is an odd integer, the result is −∞.
-        1. If _base_ is −0 and y < 0 and _exponent_ is not an odd integer, the result is +∞.
-        1. If _base_ < 0 and _base_ is finite and _exponent_ is finite and _exponent_ is not an integer, the result is *NaN*.
-      </emu-alg>
-    </emu-clause>
-  </emu-clause>
   <emu-clause id="IncrementExpression">
     <h1>|IncrementExpression|</h1>
 
@@ -217,6 +139,84 @@
           1. Return _newValue_.
         </emu-alg>
       </emu-clause>
+    </emu-clause>
+  </emu-clause>
+
+  <emu-clause id="unary-operators">
+    <h1>Unary Operators</h1>
+
+    <emu-import href="./syntax-unaryexpression.html"></emu-import>
+
+
+    <emu-clause id="exp-operator-static-semantics-isfunctiondefinition">
+      <h1>Static Semantics: IsFunctionDefinition</h1>
+      <p>
+        <emu-import href="./syntax-unaryexpression-no-yield.html"></emu-import>
+      </p>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>
+
+    <emu-clause id="exp-operator-static-semantics-isvalidsimpleassignmenttarget">
+      <h1>Static Semantics: IsValidSimpleAssignmentTarget</h1>
+      <p>
+        <emu-import href="./syntax-unaryexpression-no-yield.html"></emu-import>
+      </p>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>
+
+    <emu-clause id="exp-operator-runtime-semantics-evaluation">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <p>
+        <emu-import href="./syntax-exponentiation-expression.html"></emu-import>
+      </p>
+      <emu-alg>
+        1. Let _left_ be the result of evaluating _IncrementExpression_.
+        1. Let _base_ be ToNumber(GetValue(_left_)).
+        1. ReturnIfAbrupt(_base_).
+        1. Let _right_ be the result of evaluating _UnaryExpression_.
+        1. Let _exponent_ be ToNumber(GetValue(_right_)).
+        1. ReturnIfAbrupt(_exponent_).
+        1. Return the result of <emu-xref href="#applying-the-exp-operator" title></emu-xref> with _base_ and _exponent_ as specified in <emu-xref href="#applying-the-exp-operator"></emu-xref>.
+      </emu-alg>
+
+    </emu-clause>
+
+    <emu-clause id="applying-the-exp-operator">
+      <h1>Applying the `**` operator</h1>
+
+      <p>
+        Returns an implementation-dependent approximation of the result of raising _base_ to the power _exponent_.
+      </p>
+
+      <emu-alg>
+        1. If _exponent_ is *NaN*, the result is *NaN*.
+        1. If _exponent_ is +0, the result is 1, even if _base_ is *NaN*.
+        1. If _exponent_ is −0, the result is 1, even if _base_ is *NaN*.
+        1. If _base_ is *NaN* and _exponent_ is nonzero, the result is *NaN*.
+        1. If abs(_base_) > 1 and _exponent_ is +∞, the result is +∞.
+        1. If abs(_base_) > 1 and _exponent_ is −∞, the result is +0.
+        1. If abs(_base_) is 1 and _exponent_ is +∞, the result is *NaN*.
+        1. If abs(_base_) is 1 and _exponent_ is −∞, the result is *NaN*.
+        1. If abs(_base_) < 1 and _exponent_ is +∞, the result is +0.
+        1. If abs(_base_) < 1 and _exponent_ is −∞, the result is +∞.
+        1. If _base_ is +∞ and y > 0, the result is +∞.
+        1. If _base_ is +∞ and y < 0, the result is +0.
+        1. If _base_ is −∞ and y > 0 and _exponent_ is an odd integer, the result is −∞.
+        1. If _base_ is −∞ and y > 0 and _exponent_ is not an odd integer, the result is +∞.
+        1. If _base_ is −∞ and y < 0 and _exponent_ is an odd integer, the result is −0.
+        1. If _base_ is −∞ and y < 0 and _exponent_ is not an odd integer, the result is +0.
+        1. If _base_ is +0 and y > 0, the result is +0.
+        1. If _base_ is +0 and y < 0, the result is +∞.
+        1. If _base_ is −0 and y > 0 and _exponent_ is an odd integer, the result is −0.
+        1. If _base_ is −0 and y > 0 and _exponent_ is not an odd integer, the result is +0.
+        1. If _base_ is −0 and y < 0 and _exponent_ is an odd integer, the result is −∞.
+        1. If _base_ is −0 and y < 0 and _exponent_ is not an odd integer, the result is +∞.
+        1. If _base_ < 0 and _base_ is finite and _exponent_ is finite and _exponent_ is not an integer, the result is *NaN*.
+      </emu-alg>
     </emu-clause>
   </emu-clause>
 </emu-clause>
