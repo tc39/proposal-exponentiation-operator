@@ -24,6 +24,7 @@ Implementation Progress
 - Dmitry Lomov
 - Cait Potter
 - Jason Orendorff
+- Waldemar Horwat
 
 
 
