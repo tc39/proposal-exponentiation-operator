@@ -19,7 +19,7 @@ Implementation Progress
 
 ## Reviewers
 
-- Brian Terleson
+- Brian Terlson
 - Erik Arvidsson
 - Dmitry Lomov
 - Cait Potter
