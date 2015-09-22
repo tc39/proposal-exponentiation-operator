@@ -192,31 +192,31 @@
         Returns an implementation-dependent approximation of the result of raising _base_ to the power _exponent_.
       </p>
 
-      <emu-alg>
-        1. If _exponent_ is *NaN*, the result is *NaN*.
-        1. If _exponent_ is +0, the result is 1, even if _base_ is *NaN*.
-        1. If _exponent_ is −0, the result is 1, even if _base_ is *NaN*.
-        1. If _base_ is *NaN* and _exponent_ is nonzero, the result is *NaN*.
-        1. If abs(_base_) > 1 and _exponent_ is +∞, the result is +∞.
-        1. If abs(_base_) > 1 and _exponent_ is −∞, the result is +0.
-        1. If abs(_base_) is 1 and _exponent_ is +∞, the result is *NaN*.
-        1. If abs(_base_) is 1 and _exponent_ is −∞, the result is *NaN*.
-        1. If abs(_base_) < 1 and _exponent_ is +∞, the result is +0.
-        1. If abs(_base_) < 1 and _exponent_ is −∞, the result is +∞.
-        1. If _base_ is +∞ and y > 0, the result is +∞.
-        1. If _base_ is +∞ and y < 0, the result is +0.
-        1. If _base_ is −∞ and y > 0 and _exponent_ is an odd integer, the result is −∞.
-        1. If _base_ is −∞ and y > 0 and _exponent_ is not an odd integer, the result is +∞.
-        1. If _base_ is −∞ and y < 0 and _exponent_ is an odd integer, the result is −0.
-        1. If _base_ is −∞ and y < 0 and _exponent_ is not an odd integer, the result is +0.
-        1. If _base_ is +0 and y > 0, the result is +0.
-        1. If _base_ is +0 and y < 0, the result is +∞.
-        1. If _base_ is −0 and y > 0 and _exponent_ is an odd integer, the result is −0.
-        1. If _base_ is −0 and y > 0 and _exponent_ is not an odd integer, the result is +0.
-        1. If _base_ is −0 and y < 0 and _exponent_ is an odd integer, the result is −∞.
-        1. If _base_ is −0 and y < 0 and _exponent_ is not an odd integer, the result is +∞.
-        1. If _base_ < 0 and _base_ is finite and _exponent_ is finite and _exponent_ is not an integer, the result is *NaN*.
-      </emu-alg>
+      <ul>
+        <li>If _exponent_ is *NaN*, the result is *NaN*.</li>
+        <li>If _exponent_ is +0, the result is 1, even if _base_ is *NaN*.</li>
+        <li>If _exponent_ is −0, the result is 1, even if _base_ is *NaN*.</li>
+        <li>If _base_ is *NaN* and _exponent_ is nonzero, the result is *NaN*.</li>
+        <li>If abs(_base_) > 1 and _exponent_ is +∞, the result is +∞.</li>
+        <li>If abs(_base_) > 1 and _exponent_ is −∞, the result is +0.</li>
+        <li>If abs(_base_) is 1 and _exponent_ is +∞, the result is *NaN*.</li>
+        <li>If abs(_base_) is 1 and _exponent_ is −∞, the result is *NaN*.</li>
+        <li>If abs(_base_) < 1 and _exponent_ is +∞, the result is +0.</li>
+        <li>If abs(_base_) < 1 and _exponent_ is −∞, the result is +∞.</li>
+        <li>If _base_ is +∞ and _exponent_ > 0, the result is +∞.</li>
+        <li>If _base_ is +∞ and _exponent_ < 0, the result is +0.</li>
+        <li>If _base_ is −∞ and _exponent_ > 0 and _exponent_ is an odd integer, the result is −∞.</li>
+        <li>If _base_ is −∞ and _exponent_ > 0 and _exponent_ is not an odd integer, the result is +∞.</li>
+        <li>If _base_ is −∞ and _exponent_ < 0 and _exponent_ is an odd integer, the result is −0.</li>
+        <li>If _base_ is −∞ and _exponent_ < 0 and _exponent_ is not an odd integer, the result is +0.</li>
+        <li>If _base_ is +0 and _exponent_ > 0, the result is +0.</li>
+        <li>If _base_ is +0 and _exponent_ < 0, the result is +∞.</li>
+        <li>If _base_ is −0 and _exponent_ > 0 and _exponent_ is an odd integer, the result is −0.</li>
+        <li>If _base_ is −0 and _exponent_ > 0 and _exponent_ is not an odd integer, the result is +0.</li>
+        <li>If _base_ is −0 and _exponent_ < 0 and _exponent_ is an odd integer, the result is −∞.</li>
+        <li>If _base_ is −0 and _exponent_ < 0 and _exponent_ is not an odd integer, the result is +∞.</li>
+        <li>If _base_ < 0 and _base_ is finite and _exponent_ is finite and _exponent_ is not an integer, the result is *NaN*.</li>
+      </ul>
     </emu-clause>
   </emu-clause>
 </emu-clause>

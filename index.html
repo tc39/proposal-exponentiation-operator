@@ -221,7 +221,31 @@
         Returns an implementation-dependent approximation of the result of raising <var>base</var> to the power <var>exponent</var>.
       </p>
 
-      <emu-alg><ol><li>If <var>exponent</var> is <emu-val>NaN</emu-val>, the result is <emu-val>NaN</emu-val>.</li><li>If <var>exponent</var> is +0, the result is 1, even if <var>base</var> is <emu-val>NaN</emu-val>.</li><li>If <var>exponent</var> is −0, the result is 1, even if <var>base</var> is <emu-val>NaN</emu-val>.</li><li>If <var>base</var> is <emu-val>NaN</emu-val> and <var>exponent</var> is nonzero, the result is <emu-val>NaN</emu-val>.</li><li>If abs(<var>base</var>) &gt; 1 and <var>exponent</var> is +∞, the result is +∞.</li><li>If abs(<var>base</var>) &gt; 1 and <var>exponent</var> is −∞, the result is +0.</li><li>If abs(<var>base</var>) is 1 and <var>exponent</var> is +∞, the result is <emu-val>NaN</emu-val>.</li><li>If abs(<var>base</var>) is 1 and <var>exponent</var> is −∞, the result is <emu-val>NaN</emu-val>.</li><li>If abs(<var>base</var>) &lt; 1 and <var>exponent</var> is +∞, the result is +0.</li><li>If abs(<var>base</var>) &lt; 1 and <var>exponent</var> is −∞, the result is +∞.</li><li>If <var>base</var> is +∞ and y &gt; 0, the result is +∞.</li><li>If <var>base</var> is +∞ and y &lt; 0, the result is +0.</li><li>If <var>base</var> is −∞ and y &gt; 0 and <var>exponent</var> is an odd integer, the result is −∞.</li><li>If <var>base</var> is −∞ and y &gt; 0 and <var>exponent</var> is not an odd integer, the result is +∞.</li><li>If <var>base</var> is −∞ and y &lt; 0 and <var>exponent</var> is an odd integer, the result is −0.</li><li>If <var>base</var> is −∞ and y &lt; 0 and <var>exponent</var> is not an odd integer, the result is +0.</li><li>If <var>base</var> is +0 and y &gt; 0, the result is +0.</li><li>If <var>base</var> is +0 and y &lt; 0, the result is +∞.</li><li>If <var>base</var> is −0 and y &gt; 0 and <var>exponent</var> is an odd integer, the result is −0.</li><li>If <var>base</var> is −0 and y &gt; 0 and <var>exponent</var> is not an odd integer, the result is +0.</li><li>If <var>base</var> is −0 and y &lt; 0 and <var>exponent</var> is an odd integer, the result is −∞.</li><li>If <var>base</var> is −0 and y &lt; 0 and <var>exponent</var> is not an odd integer, the result is +∞.</li><li>If <var>base</var> &lt; 0 and <var>base</var> is finite and <var>exponent</var> is finite and <var>exponent</var> is not an integer, the result is <emu-val>NaN</emu-val>.</li></ol></emu-alg>
+      <ul>
+        <li>If <var>exponent</var> is <emu-val>NaN</emu-val>, the result is <emu-val>NaN</emu-val>.</li>
+        <li>If <var>exponent</var> is +0, the result is 1, even if <var>base</var> is <emu-val>NaN</emu-val>.</li>
+        <li>If <var>exponent</var> is −0, the result is 1, even if <var>base</var> is <emu-val>NaN</emu-val>.</li>
+        <li>If <var>base</var> is <emu-val>NaN</emu-val> and <var>exponent</var> is nonzero, the result is <emu-val>NaN</emu-val>.</li>
+        <li>If abs(<var>base</var>) &gt; 1 and <var>exponent</var> is +∞, the result is +∞.</li>
+        <li>If abs(<var>base</var>) &gt; 1 and <var>exponent</var> is −∞, the result is +0.</li>
+        <li>If abs(<var>base</var>) is 1 and <var>exponent</var> is +∞, the result is <emu-val>NaN</emu-val>.</li>
+        <li>If abs(<var>base</var>) is 1 and <var>exponent</var> is −∞, the result is <emu-val>NaN</emu-val>.</li>
+        <li>If abs(<var>base</var>) &lt; 1 and <var>exponent</var> is +∞, the result is +0.</li>
+        <li>If abs(<var>base</var>) &lt; 1 and <var>exponent</var> is −∞, the result is +∞.</li>
+        <li>If <var>base</var> is +∞ and <var>exponent</var> &gt; 0, the result is +∞.</li>
+        <li>If <var>base</var> is +∞ and <var>exponent</var> &lt; 0, the result is +0.</li>
+        <li>If <var>base</var> is −∞ and <var>exponent</var> &gt; 0 and <var>exponent</var> is an odd integer, the result is −∞.</li>
+        <li>If <var>base</var> is −∞ and <var>exponent</var> &gt; 0 and <var>exponent</var> is not an odd integer, the result is +∞.</li>
+        <li>If <var>base</var> is −∞ and <var>exponent</var> &lt; 0 and <var>exponent</var> is an odd integer, the result is −0.</li>
+        <li>If <var>base</var> is −∞ and <var>exponent</var> &lt; 0 and <var>exponent</var> is not an odd integer, the result is +0.</li>
+        <li>If <var>base</var> is +0 and <var>exponent</var> &gt; 0, the result is +0.</li>
+        <li>If <var>base</var> is +0 and <var>exponent</var> &lt; 0, the result is +∞.</li>
+        <li>If <var>base</var> is −0 and <var>exponent</var> &gt; 0 and <var>exponent</var> is an odd integer, the result is −0.</li>
+        <li>If <var>base</var> is −0 and <var>exponent</var> &gt; 0 and <var>exponent</var> is not an odd integer, the result is +0.</li>
+        <li>If <var>base</var> is −0 and <var>exponent</var> &lt; 0 and <var>exponent</var> is an odd integer, the result is −∞.</li>
+        <li>If <var>base</var> is −0 and <var>exponent</var> &lt; 0 and <var>exponent</var> is not an odd integer, the result is +∞.</li>
+        <li>If <var>base</var> &lt; 0 and <var>base</var> is finite and <var>exponent</var> is finite and <var>exponent</var> is not an integer, the result is <emu-val>NaN</emu-val>.</li>
+      </ul>
     </emu-clause>
   </emu-clause>
 </emu-clause>
