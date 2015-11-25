@@ -15,7 +15,8 @@ Implementation Progress
 ## Authors
 
 - Rick Waldron
-- Claude Pache 
+- Claude Pache
+- Brendan Eich 
 
 ## Reviewers
 

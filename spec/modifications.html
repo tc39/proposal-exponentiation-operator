@@ -9,8 +9,8 @@
     <emu-production name="IncrementExpression" params="Yield">
 
       <emu-rhs><emu-nt params="?Yield">LeftHandSideExpression</emu-nt></emu-rhs>
-      <emu-rhs><emu-nt params="?Yield">LeftHandSideExpression</emu-nt> [<emu-gann>no <emu-nt>LineTerminator</emu-nt> here</emu-gann>] <emu-t>++</emu-t></emu-rhs>
-      <emu-rhs><emu-nt params="?Yield">LeftHandSideExpression</emu-nt> [<emu-gann>no <emu-nt>LineTerminator</emu-nt> here</emu-gann>] <emu-t>--</emu-t></emu-rhs>
+      <emu-rhs><emu-nt params="?Yield">LeftHandSideExpression</emu-nt> <emu-gann>no <emu-nt>LineTerminator</emu-nt> here</emu-gann> <emu-t>++</emu-t></emu-rhs>
+      <emu-rhs><emu-nt params="?Yield">LeftHandSideExpression</emu-nt> <emu-gann>no <emu-nt>LineTerminator</emu-nt> here</emu-gann> <emu-t>--</emu-t></emu-rhs>
       <ins class="block"><emu-rhs><emu-t>++</emu-t> <emu-nt params="?Yield">LeftHandSideExpression</emu-nt></emu-rhs></ins>
       <ins class="block"><emu-rhs><emu-t>--</emu-t> <emu-nt params="?Yield">LeftHandSideExpression</emu-nt></emu-rhs></ins>
     </emu-production>
@@ -41,7 +41,7 @@
       <emu-rhs><emu-t>~</emu-t><emu-nt params="?Yield">UnaryExpression</emu-nt></emu-rhs>
       <emu-rhs><emu-t>!</emu-t><emu-nt params="?Yield">UnaryExpression</emu-nt></emu-rhs>
 
-      <ins class="block"><emu-rhs><emu-nt params="?Yield">IncrementExpression</emu-nt> <emu-t>**</emu-t> <emu-nt params="?Yield">UnaryExpression</emu-nt></emu-rhs></ins>
+
 
       <emu-note>
         <ul>

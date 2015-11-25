@@ -150,9 +150,9 @@
 
     <emu-clause id="exp-operator-static-semantics-isfunctiondefinition">
       <h1>Static Semantics: IsFunctionDefinition</h1>
-      <p>
-        <emu-import href="./syntax-unaryexpression-no-yield.html"></emu-import>
-      </p>
+
+      <emu-import href="./syntax-unaryexpression-no-yield.html"></emu-import>
+
       <emu-alg>
         1. Return *false*.
       </emu-alg>
@@ -160,9 +160,9 @@
 
     <emu-clause id="exp-operator-static-semantics-isvalidsimpleassignmenttarget">
       <h1>Static Semantics: IsValidSimpleAssignmentTarget</h1>
-      <p>
-        <emu-import href="./syntax-unaryexpression-no-yield.html"></emu-import>
-      </p>
+
+      <emu-import href="./syntax-unaryexpression-no-yield.html"></emu-import>
+
       <emu-alg>
         1. Return *false*.
       </emu-alg>
@@ -177,7 +177,7 @@
         1. Let _left_ be the result of evaluating _IncrementExpression_.
         1. Let _base_ be ToNumber(GetValue(_left_)).
         1. ReturnIfAbrupt(_base_).
-        1. Let _right_ be the result of evaluating _UnaryExpression_.
+        1. Let _right_ be the result of evaluating _ExponentiationExpression_.
         1. Let _exponent_ be ToNumber(GetValue(_right_)).
         1. ReturnIfAbrupt(_exponent_).
         1. Return the result of <emu-xref href="#applying-the-exp-operator" title></emu-xref> with _base_ and _exponent_ as specified in <emu-xref href="#applying-the-exp-operator"></emu-xref>.
@@ -186,7 +186,7 @@
     </emu-clause>
 
     <emu-clause id="applying-the-exp-operator">
-      <h1>Applying the `**` operator</h1>
+      <h1>Applying the ** operator</h1>
 
       <p>
         Returns an implementation-dependent approximation of the result of raising _base_ to the power _exponent_.

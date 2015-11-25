@@ -1,12 +1,15 @@
 <emu-grammar>
-  UnaryExpression :
-    IncrementExpression
-    `delete` UnaryExpression
-    `void` UnaryExpression
-    `typeof` UnaryExpression
-    `+` UnaryExpression
-    `-` UnaryExpression
-    `~` UnaryExpression
-    `!` UnaryExpression
-    IncrementExpression `**` UnaryExpression
+ExponentiationExpression :
+  UnaryExpression
+  IncrementExpression `**` ExponentiationExpression
+
+UnaryExpression :
+  IncrementExpression
+  `delete` UnaryExpression
+  `void` UnaryExpression
+  `typeof` UnaryExpression
+  `+` UnaryExpression
+  `-` UnaryExpression
+  `~` UnaryExpression
+  `!` UnaryExpression
 </emu-grammar>

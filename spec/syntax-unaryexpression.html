@@ -1,13 +1,16 @@
 <emu-grammar>
-  UnaryExpression[Yield] :
-    IncrementExpression[?Yield]
-    `delete` UnaryExpression[?Yield]
-    `void` UnaryExpression[?Yield]
-    `typeof` UnaryExpression[?Yield]
-    `+` UnaryExpression[?Yield]
-    `-` UnaryExpression[?Yield]
-    `~` UnaryExpression[?Yield]
-    `!` UnaryExpression[?Yield]
-    IncrementExpression[?Yield] `**` UnaryExpression[?Yield]    #1
+ExponentiationExpression[Yield] :
+  UnaryExpression[?Yield]
+  IncrementExpression[?Yield] `**` ExponentiationExpression[?Yield]    #1
+
+UnaryExpression[Yield] :
+  IncrementExpression[?Yield]
+  `delete` UnaryExpression[?Yield]
+  `void` UnaryExpression[?Yield]
+  `typeof` UnaryExpression[?Yield]
+  `+` UnaryExpression[?Yield]
+  `-` UnaryExpression[?Yield]
+  `~` UnaryExpression[?Yield]
+  `!` UnaryExpression[?Yield]
 </emu-grammar>
 
