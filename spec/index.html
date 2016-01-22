@@ -142,16 +142,16 @@
     </emu-clause>
   </emu-clause>
 
-  <emu-clause id="unary-operators">
-    <h1>Unary Operators</h1>
+  <emu-clause id="exponentiation-operator">
+    <h1>Exponentiation Operator</h1>
 
-    <emu-import href="./syntax-unaryexpression.html"></emu-import>
+    <emu-import href="./syntax-exponentiation-expression.html"></emu-import>
 
 
     <emu-clause id="exp-operator-static-semantics-isfunctiondefinition">
       <h1>Static Semantics: IsFunctionDefinition</h1>
 
-      <emu-import href="./syntax-unaryexpression-no-yield.html"></emu-import>
+      <emu-import href="./syntax-exponentiation-expression-no-yield.html"></emu-import>
 
       <emu-alg>
         1. Return *false*.
@@ -161,7 +161,7 @@
     <emu-clause id="exp-operator-static-semantics-isvalidsimpleassignmenttarget">
       <h1>Static Semantics: IsValidSimpleAssignmentTarget</h1>
 
-      <emu-import href="./syntax-unaryexpression-no-yield.html"></emu-import>
+      <emu-import href="./syntax-exponentiation-expression-no-yield.html"></emu-import>
 
       <emu-alg>
         1. Return *false*.
@@ -171,7 +171,7 @@
     <emu-clause id="exp-operator-runtime-semantics-evaluation">
       <h1>Runtime Semantics: Evaluation</h1>
       <p>
-        <emu-import href="./syntax-exponentiation-expression.html"></emu-import>
+        <emu-import href="./syntax-exponentiation-expression-evaluation.html"></emu-import>
       </p>
       <emu-alg>
         1. Let _left_ be the result of evaluating _IncrementExpression_.
