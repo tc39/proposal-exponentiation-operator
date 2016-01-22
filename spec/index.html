@@ -61,46 +61,6 @@
       </emu-note>
     </emu-clause>
 
-    <emu-clause id="postfix-increment-operator">
-      <h1>Postfix Increment Operator</h1>
-
-      <emu-clause id="postfix-increment-operator-runtime-semantics-evaluation">
-        <h1>Runtime Semantics: Evaluation</h1>
-        <p>
-          <emu-prodref name="IncrementExpression" a="1" class="inline"></emu-prodref>
-        </p>
-        <emu-alg>
-          1. Let _expr_ be the result of evaluating _LeftHandSideExpression_.
-          1. Let _oldValue_ be ToNumber(GetValue(_expr_)).
-          1. ReturnIfAbrupt(_oldValue_).
-          1. Let _newValue_ be the result of adding the value `1` to _oldValue_, using the same rules as for the `+` operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"></emu-xref>).
-          1. Let _status_ be PutValue(_expr_, _newValue_).
-          1. ReturnIfAbrupt(_status_).
-          1. Return _oldValue_.
-        </emu-alg>
-      </emu-clause>
-    </emu-clause>
-
-    <emu-clause id="postfix-decrement-operator">
-      <h1>Postfix Decrement Operator</h1>
-
-      <emu-clause id="postfix-increment-operator-runtime-semantics-evaluation">
-        <h1>Runtime Semantics: Evaluation</h1>
-        <p>
-          <emu-prodref name="IncrementExpression" a="2" class="inline"></emu-prodref>
-        </p>
-        <emu-alg>
-          1. Let _expr_ be the result of evaluating _LeftHandSideExpression_.
-          1. Let _oldValue_ be ToNumber(GetValue(_expr_)).
-          1. ReturnIfAbrupt(_oldValue_).
-          1. Let _newValue_ be the result of subtracting the value `1` from _oldValue_, using the same rules as for the `-` operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"></emu-xref>).
-          1. Let _status_ be PutValue(_expr_, _newValue_).
-          1. ReturnIfAbrupt(_status_).
-          1. Return _oldValue_.
-        </emu-alg>
-      </emu-clause>
-    </emu-clause>
-
     <emu-clause id="prefix-increment-operator">
       <h1>Prefix Increment Operator</h1>
 
