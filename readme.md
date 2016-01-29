@@ -4,7 +4,7 @@
 
 ## Status
 
-**Stage 3**
+**Stage 4**
 
 Implementation Progress
   - Traceur
