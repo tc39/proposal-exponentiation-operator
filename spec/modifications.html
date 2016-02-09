@@ -4,9 +4,9 @@
 
   <emu-clause id="PostfixExpression">
     <h1><del>|PostfixExpression|</del></h1>
-    <h1><ins>|IncrementExpression|</ins></h1>
+    <h1><ins>|UpdateExpression|</ins></h1>
 
-    <emu-production name="IncrementExpression" params="Yield">
+    <emu-production name="UpdateExpression" params="Yield">
 
       <emu-rhs><emu-nt params="?Yield">LeftHandSideExpression</emu-nt></emu-rhs>
       <emu-rhs><emu-nt params="?Yield">LeftHandSideExpression</emu-nt> <emu-gann>no <emu-nt>LineTerminator</emu-nt> here</emu-gann> <emu-t>++</emu-t></emu-rhs>
@@ -29,7 +29,7 @@
     <h1>|UnaryExpression|</h1>
     <emu-production name="UnaryExpression">
       <del class="block"><emu-rhs><emu-nt params="?Yield">PostfixExpression</emu-nt></emu-rhs></del>
-      <ins class="block"><emu-rhs><emu-nt params="?Yield">IncrementExpression</emu-nt></emu-rhs></ins>
+      <ins class="block"><emu-rhs><emu-nt params="?Yield">UpdateExpression</emu-nt></emu-rhs></ins>
 
       <emu-rhs><emu-t>delete</emu-t><emu-nt params="?Yield">UnaryExpression</emu-nt></emu-rhs>
       <emu-rhs><emu-t>void</emu-t><emu-nt params="?Yield">UnaryExpression</emu-nt></emu-rhs>
@@ -45,11 +45,11 @@
 
       <emu-note>
         <ul>
-          <li>Remove <emu-xref href="#sec-unary-operators-static-semantics-early-errors">ES2015, 12.5.1 Static Semantics: Early Errors</emu-xref>, which is now defined as part of <emu-xref href="#IncrementExpression"></emu-xref>, under <emu-xref href="#unary-operators-static-semantics-early-errors" title></emu-xref>.</li>
+          <li>Remove <emu-xref href="#sec-unary-operators-static-semantics-early-errors">ES2015, 12.5.1 Static Semantics: Early Errors</emu-xref>, which is now defined as part of <emu-xref href="#UpdateExpression"></emu-xref>, under <emu-xref href="#unary-operators-static-semantics-early-errors" title></emu-xref>.</li>
 
-          <li>Remove <emu-xref href="#sec-prefix-increment-operator">ES2015, 12.5.7 Prefix Increment Operator</emu-xref>, which is now defined as part of <emu-xref href="#IncrementExpression"></emu-xref>, under <emu-xref href="#prefix-increment-operator" title></emu-xref>.</li>
+          <li>Remove <emu-xref href="#sec-prefix-increment-operator">ES2015, 12.5.7 Prefix Increment Operator</emu-xref>, which is now defined as part of <emu-xref href="#UpdateExpression"></emu-xref>, under <emu-xref href="#prefix-increment-operator" title></emu-xref>.</li>
 
-          <li>Remove <emu-xref href="#sec-prefix-decrement-operator">ES2015, 12.5.8 Prefix Decrement Operator</emu-xref>, which is now defined as part of <emu-xref href="#IncrementExpression"></emu-xref>, under <emu-xref href="#prefix-decrement-operator" title></emu-xref>.</li>
+          <li>Remove <emu-xref href="#sec-prefix-decrement-operator">ES2015, 12.5.8 Prefix Decrement Operator</emu-xref>, which is now defined as part of <emu-xref href="#UpdateExpression"></emu-xref>, under <emu-xref href="#prefix-decrement-operator" title></emu-xref>.</li>
         </ul>
       </emu-note>
     </emu-production>
