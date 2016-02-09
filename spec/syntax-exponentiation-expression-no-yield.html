@@ -1,4 +1,5 @@
 <emu-grammar>
 ExponentiationExpression :
-  IncrementExpression `**` ExponentiationExpression
+  UnaryExpression
+  UpdateExpression `**` ExponentiationExpression #1
 </emu-grammar>

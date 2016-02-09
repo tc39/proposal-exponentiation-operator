@@ -16,8 +16,8 @@
 <emu-clause id="exp-operator">
   <h1>Exponentiation Operator</h1>
 
-  <emu-clause id="IncrementExpression">
-    <h1>|IncrementExpression|</h1>
+  <emu-clause id="UpdateExpression">
+    <h1>|UpdateExpression|</h1>
 
     <emu-import href="./syntax-incrementexpression.html"></emu-import>
 
@@ -35,7 +35,7 @@
       </emu-note>
     </emu-clause>
 
-    <emu-clause id="incremementexpression-static-semantics-isfunctiondefinition">
+    <emu-clause id="updateexpression-static-semantics-isfunctiondefinition">
       <h1>Static Semantics: IsFunctionDefinition</h1>
 
       <emu-import href="./static-semantics-no-yield.html"></emu-import>
@@ -48,7 +48,7 @@
       </emu-note>
     </emu-clause>
 
-    <emu-clause id="incremementexpression-static-semantics-isvalidsimpleassignmenttarget">
+    <emu-clause id="updateexpression-static-semantics-isvalidsimpleassignmenttarget">
       <h1>Static Semantics: IsValidSimpleAssignmentTarget</h1>
 
       <emu-import href="./static-semantics-no-yield.html"></emu-import>
@@ -61,13 +61,53 @@
       </emu-note>
     </emu-clause>
 
+    <emu-clause id="postfix-increment-operator">
+      <h1>Postfix Increment Operator</h1>
+
+      <emu-clause id="postfix-increment-operator-runtime-semantics-evaluation">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <p>
+          <emu-prodref name="UpdateExpression" a="1" class="inline"></emu-prodref>
+        </p>
+        <emu-alg>
+          1. Let _expr_ be the result of evaluating _LeftHandSideExpression_.
+          1. Let _oldValue_ be ToNumber(GetValue(_expr_)).
+          1. ReturnIfAbrupt(_oldValue_).
+          1. Let _newValue_ be the result of adding the value `1` to _oldValue_, using the same rules as for the `+` operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"></emu-xref>).
+          1. Let _status_ be PutValue(_expr_, _newValue_).
+          1. ReturnIfAbrupt(_status_).
+          1. Return _oldValue_.
+        </emu-alg>
+      </emu-clause>
+    </emu-clause>
+
+    <emu-clause id="postfix-decrement-operator">
+      <h1>Postfix Decrement Operator</h1>
+
+      <emu-clause id="postfix-increment-operator-runtime-semantics-evaluation">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <p>
+          <emu-prodref name="UpdateExpression" a="2" class="inline"></emu-prodref>
+        </p>
+        <emu-alg>
+          1. Let _expr_ be the result of evaluating _LeftHandSideExpression_.
+          1. Let _oldValue_ be ToNumber(GetValue(_expr_)).
+          1. ReturnIfAbrupt(_oldValue_).
+          1. Let _newValue_ be the result of subtracting the value `1` from _oldValue_, using the same rules as for the `-` operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"></emu-xref>).
+          1. Let _status_ be PutValue(_expr_, _newValue_).
+          1. ReturnIfAbrupt(_status_).
+          1. Return _oldValue_.
+        </emu-alg>
+      </emu-clause>
+    </emu-clause>
+
     <emu-clause id="prefix-increment-operator">
       <h1>Prefix Increment Operator</h1>
 
       <emu-clause id="prefix-increment-operator-runtime-semantics-evaluation">
         <h1>Runtime Semantics: Evaluation</h1>
         <p>
-          <emu-prodref name="IncrementExpression" a="3" class="inline"></emu-prodref>
+          <emu-prodref name="UpdateExpression" a="3" class="inline"></emu-prodref>
         </p>
         <emu-alg>
           1. Let _expr_ be the result of evaluating _LeftHandSideExpression_.
@@ -87,7 +127,7 @@
       <emu-clause id="prefix-increment-operator-runtime-semantics-evaluation">
         <h1>Runtime Semantics: Evaluation</h1>
         <p>
-          <emu-prodref name="IncrementExpression" a="4" class="inline"></emu-prodref>
+          <emu-prodref name="UpdateExpression" a="4" class="inline"></emu-prodref>
         </p>
         <emu-alg>
           1. Let _expr_ be the result of evaluating _LeftHandSideExpression_.
@@ -111,7 +151,7 @@
     <emu-clause id="exp-operator-static-semantics-isfunctiondefinition">
       <h1>Static Semantics: IsFunctionDefinition</h1>
 
-      <emu-import href="./syntax-exponentiation-expression-no-yield.html"></emu-import>
+      <emu-import href="./syntax-exponentiation-expression-evaluation.html"></emu-import>
 
       <emu-alg>
         1. Return *false*.
@@ -121,7 +161,7 @@
     <emu-clause id="exp-operator-static-semantics-isvalidsimpleassignmenttarget">
       <h1>Static Semantics: IsValidSimpleAssignmentTarget</h1>
 
-      <emu-import href="./syntax-exponentiation-expression-no-yield.html"></emu-import>
+      <emu-import href="./syntax-exponentiation-expression-evaluation.html"></emu-import>
 
       <emu-alg>
         1. Return *false*.
@@ -134,18 +174,17 @@
         <emu-import href="./syntax-exponentiation-expression-evaluation.html"></emu-import>
       </p>
       <emu-alg>
-        1. Let _left_ be the result of evaluating _IncrementExpression_.
-        1. Let _base_ be ToNumber(GetValue(_left_)).
-        1. ReturnIfAbrupt(_base_).
+        1. Let _left_ be the result of evaluating _UpdateExpression_.
+        1. Let _leftValue_ be ? GetValue(_left_).
         1. Let _right_ be the result of evaluating _ExponentiationExpression_.
-        1. Let _exponent_ be ToNumber(GetValue(_right_)).
-        1. ReturnIfAbrupt(_exponent_).
-        1. Return the result of <emu-xref href="#applying-the-exp-operator" title></emu-xref> with _base_ and _exponent_ as specified in <emu-xref href="#applying-the-exp-operator"></emu-xref>.
+        1. Let _rightValue_ be ? GetValue(_right_).
+        1. Let _base_ be ? ToNumber(_leftValue_).
+        1. Let _exponent_ be ? ToNumber(_rightValue_).
+        1. Return the result of <emu-xref href="#sec-applying-the-exp-operator" title>Applying the ** operator</emu-xref> with _base_ and _exponent_ as specified in <emu-xref href="#sec-applying-the-exp-operator"></emu-xref>.
       </emu-alg>
-
     </emu-clause>
 
-    <emu-clause id="applying-the-exp-operator">
+    <emu-clause id="sec-applying-the-exp-operator">
       <h1>Applying the ** operator</h1>
 
       <p>

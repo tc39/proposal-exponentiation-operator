@@ -1,5 +1,6 @@
 <emu-grammar>
 ExponentiationExpression[Yield] :
-  IncrementExpression[?Yield] `**` ExponentiationExpression[?Yield]    #1
+  UnaryExpression[?Yield]
+  UpdateExpression[?Yield] `**` ExponentiationExpression[?Yield]    #1
 </emu-grammar>
 
