@@ -11,6 +11,7 @@ Implementation Progress
   - Babel
   - V8 (https://code.google.com/p/v8/issues/detail?id=3915)
   - SpiderMonkey (https://bugzilla.mozilla.org/show_bug.cgi?id=1135708)
+  - TypeScript (https://github.com/Microsoft/TypeScript/issues/4812)
 
 ## Authors
 
