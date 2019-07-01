@@ -1,6 +1,6 @@
 # Exponentiation Operator
 
-[Specification](http://rwaldron.github.io/exponentiation-operator/)
+[Specification](https://www.ecma-international.org/ecma-262/7.0/#sec-exp-operator)
 
 ## Status
 
