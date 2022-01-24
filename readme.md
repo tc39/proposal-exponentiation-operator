@@ -1,10 +1,10 @@
 # Exponentiation Operator
 
-[Specification](http://rwaldron.github.io/exponentiation-operator/)
+[Specification](https://tc39.es/ecma262/#sec-exp-operator)
 
 ## Status
 
-**Stage 3**
+**Stage 4**
 
 Implementation Progress
   - Traceur
